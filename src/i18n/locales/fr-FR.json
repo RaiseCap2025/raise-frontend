@@ -1,0 +1,7 @@
+{
+    "app.welcome": "Bienvenue sur notre application React d'entreprise",
+    "app.theme.light": "Thème clair",
+    "app.theme.dark": "Thème sombre",
+    "app.toggleTheme": "Changer le thème"
+}
+  
