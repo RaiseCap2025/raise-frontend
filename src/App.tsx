@@ -4,6 +4,8 @@ import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary';
 import MainLayout from './layouts/MainLayout/MainLayout';
 import Home from './pages/Home/Home';
 import NotFound from './pages/NotFound/NotFound';
+import ViewData from './pages/ViewData/ViewData';
+import ExecuteQuery from './pages/ExecuteQuery/ExecuteQuery';
 
 const App: React.FC = () => (
   <ErrorBoundary>
@@ -12,6 +14,8 @@ const App: React.FC = () => (
         <Routes>
           <Route element={<MainLayout />}>
             <Route index element={<Home />} />
+            <Route path="/view-data" element={<ViewData />} />
+            <Route path="/execute-query" element={<ExecuteQuery />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

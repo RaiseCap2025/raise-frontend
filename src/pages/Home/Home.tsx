@@ -13,24 +13,18 @@ const Home: React.FC = () => {
 
   return (
     <Box className={styles.home}>
-      <h1>Welcome to the RAISE Home Page</h1>
+      <h1>Welcome to the RAISE</h1>
       <Box display="flex" gap={2}>
-        <Card onClick={() => handleNavigation('/fetch-data')} style={{ cursor: 'pointer' }}>
+        <Card onClick={() => handleNavigation('/view-data')} style={{ cursor: 'pointer' }}>
           <CardContent>
-            <Typography variant="h6">Fetching Data</Typography>
-            <Typography variant="body2">Navigate to fetch data from Snowflake.</Typography>
+            <Typography variant="h6">View Data</Typography>
+            <Typography variant="body2">To view data from Snowflake.</Typography>
           </CardContent>
         </Card>
-        <Card onClick={() => handleNavigation('/create-data')} style={{ cursor: 'pointer' }}>
+        <Card onClick={() => handleNavigation('/execute-query')} style={{ cursor: 'pointer' }}>
           <CardContent>
-            <Typography variant="h6">Creating Data</Typography>
-            <Typography variant="body2">Navigate to create data in Snowflake.</Typography>
-          </CardContent>
-        </Card>
-        <Card onClick={() => handleNavigation('/update-data')} style={{ cursor: 'pointer' }}>
-          <CardContent>
-            <Typography variant="h6">Updating Data</Typography>
-            <Typography variant="body2">Navigate to update data in Snowflake.</Typography>
+            <Typography variant="h6">Execute Query</Typography>
+            <Typography variant="body2">To execute generic queries.</Typography>
           </CardContent>
         </Card>
       </Box>
