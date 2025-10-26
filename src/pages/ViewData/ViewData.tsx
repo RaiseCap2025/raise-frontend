@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TextField, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from "@mui/material";
-import { QueryAPI } from "../../api/endpoints/query.api";
+import { QueryAPI } from "../../api/endpoints/snowflakeQuery.api";
 
 const ViewData: React.FC = () => {
     const [warehouse, setWarehouse] = useState("SNOW_CAP_SPC");
