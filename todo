@@ -3,12 +3,12 @@
  MUI theme and CssBaseline
  SCSS variables + modular SCSS
  axios instance with interceptors + central error handling
- Context API scaffold (pattern with reducer)
  ErrorBoundary component
  Router + Layouts (Main + Auth)
- react-intl-universal (expand JSON locales)
  Add API typed clients (openapi generator / hand-written)
 
+ react-intl-universal (expand JSON locales)
+ light dark theme setup
  Unit test runner (Vitest)
  Add monitoring (Sentry/LogRocket)
  Add authentication provider and secure routes
