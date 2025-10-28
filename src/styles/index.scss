@@ -1,8 +1,8 @@
-@import './_variables';
-@import './color.scss';
+@use './_variables' as variables;
+@use './color.scss';
 
 :root {
-  --app-primary: #{$primary};
+  --app-primary: #{variables.$primary};
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   // font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   line-height: 1.5;

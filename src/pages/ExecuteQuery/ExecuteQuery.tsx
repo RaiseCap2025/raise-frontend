@@ -1,26 +1,21 @@
 import React, { useState } from "react";
 import { TextField, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from "@mui/material";
 import { QueryAPI } from "../../api/endpoints/snowflakeQuery.api";
+import snowflakeQuery from "../../constants/snowflakeQuery.ts";
 
-const groupByQuery =
-        `SELECT 
-            PAGE_NAME,
-            MAX(CASE WHEN ROLE_NAME = 'RAISE_ADMIN' THEN HAS_ACCESS END) AS RAISE_ADMIN,
-            MAX(CASE WHEN ROLE_NAME = 'RAISE_DEVELOPER' THEN HAS_ACCESS END) AS RAISE_DEVELOPER,
-            MAX(CASE WHEN ROLE_NAME = 'RAISE_USER' THEN HAS_ACCESS END) AS RAISE_USER
-        FROM ROLE_PERMISSIONS
-        GROUP BY PAGE_NAME
-        ORDER BY PAGE_NAME;`;
-
-const sqlQuery = `SELECT ROLE_NAME, PAGE_NAME,HAS_ACCESS FROM ROLE_PERMISSIONS;`;
-
-const simpleQuery = `SELECT * FROM TEST_ORDER_123 LIMIT 10;`;
+// console.log("View Query:", viewQuery);
+// console.log("Group By Query:", viewGroupByQuery);
+// console.log("SQL Query:", viewSimpleQuery);
+// console.log("SQL Query:", createTableQuery);
+// console.log("SQL Query:", insertDataQuery);
+// console.log("SQL Query:", createTableQueryOld);
+// console.log("SQL Query:", insertDataQueryOld);
 
 const ExecuteQuery: React.FC = () => {
     const [warehouse, setWarehouse] = useState("SNOW_CAP_SPC");
     const [database, setDatabase] = useState("SNOW_CAPGE_SPC");
     const [schema, setSchema] = useState("SNOW_CAP_RAISE");
-    const [query, setQuery] = useState(simpleQuery);
+    const [query, setQuery] = useState(snowflakeQuery.viewSimpleQuery);
     // const [warehouse, setWarehouse] = useState("");
     // const [database, setDatabase] = useState("");
     // const [schema, setSchema] = useState("");
