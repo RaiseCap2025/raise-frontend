@@ -1,27 +1,22 @@
-import React from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import React, { type ReactNode } from 'react';
 import styles from './MainLayout.module.scss';
-import { AppBar, Toolbar, Typography, Container } from '@mui/material';
+import Header from '../../components/Header/Header';
+// import Footer from '../../components/Footer/Footer';
+import SideNav from '../../components/SideNav/SideNav';
 
-const MainLayout: React.FC = () => {
-  const navigate = useNavigate();
+interface MainLayoutProps {
+  children: ReactNode;
+}
+
+const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
-  <div className={styles.root}>
-    <AppBar position="static">
-      <Toolbar>
-        <Typography 
-          variant="h6" 
-          onClick={() => navigate("/")} 
-          style={{ cursor: 'pointer' }}
-        >
-          RAISE
-        </Typography>
-      </Toolbar>
-    </AppBar>
-    <Container sx={{ mt: 4 }}>
-      <Outlet />
-    </Container>
-  </div>);
+    <div className={styles.root}>
+      <div className={styles.header}><Header /></div>
+      <div className={styles.sidebar}><SideNav /></div>
+      <main className={styles.main}>{children}</main>
+      {/* <div className={styles.footer}><Footer /></div> */}
+    </div>
+  );
 };
 
 export default MainLayout;

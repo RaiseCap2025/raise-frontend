@@ -10,18 +10,19 @@ import ExecuteQuery from './pages/ExecuteQuery/ExecuteQuery';
 const App: React.FC = () => (
   <ErrorBoundary>
     <BrowserRouter>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Routes>
-          <Route element={<MainLayout />}>
+      <MainLayout>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
             <Route index element={<Home />} />
             <Route path="/view-data" element={<ViewData />} />
             <Route path="/execute-query" element={<ExecuteQuery />} />
             <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-      </Suspense>
+          </Routes>
+        </Suspense>
+      </MainLayout>
     </BrowserRouter>
   </ErrorBoundary>
 );
 
 export default App;
+``

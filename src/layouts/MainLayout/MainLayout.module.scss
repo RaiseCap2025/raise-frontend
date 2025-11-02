@@ -1,5 +1,38 @@
 .root {
-    min-height: 100vh;
-    background: linear-gradient(180deg, #fafafa, #fff);
-  }
-  
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* Header, Body, Footer */
+  grid-template-columns: 220px 1fr; /* Sidebar, Main */
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "sidebar footer";
+  height: 100vh;
+}
+
+.header {
+  grid-area: header;
+}
+
+.body {
+  display: contents; /* Let grid handle layout */
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: #fafafa;
+  border-right: 1px solid #ddd;
+}
+
+.main {
+  grid-area: main;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.footer {
+  grid-area: footer;
+  background-color: #f5f5f5;
+  text-align: center;
+  padding: 12px;
+  border-top: 1px solid #ddd;
+}

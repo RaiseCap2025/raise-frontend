@@ -1,0 +1,25 @@
+.sideNav {
+    width: 220px;
+    background-color: #fafafa;
+    border-right: 1px solid #ddd;
+    padding: 16px;
+  }
+  
+  .sideNav ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sideNav li {
+    margin-bottom: 12px;
+  }
+  
+  .sideNav a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .sideNav a.active {
+    font-weight: bold;
+    color: #1976d2;
+  }
