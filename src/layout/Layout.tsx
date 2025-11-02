@@ -1,8 +1,8 @@
 import React, { type ReactNode } from 'react';
-import styles from './MainLayout.module.scss';
-import Header from '../../components/Header/Header';
-// import Footer from '../../components/Footer/Footer';
-import SideNav from '../../components/SideNav/SideNav';
+import styles from './Layout.module.scss';
+import Header from '../components/layout/Header/Header';
+// import Footer from '../components/Footer/Footer';
+import SideNav from '../components/layout/SideNav/SideNav';
 
 interface MainLayoutProps {
   children: ReactNode;
