@@ -42,7 +42,7 @@ const ViewData: React.FC = () => {
     return (
         <div style={{ padding: "20px" }}>
             <Typography variant="h4" gutterBottom>
-                Fetch Data from Snowflake
+                Fetch Data from Snowflake.
             </Typography>
             <div style={{ marginBottom: "20px", display: "flex", gap: "10px" }}>
                 <TextField

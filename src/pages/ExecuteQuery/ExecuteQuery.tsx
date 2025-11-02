@@ -1,15 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from "@mui/material";
 import { QueryAPI } from "../../api/endpoints/snowflakeQuery.api";
-import snowflakeQuery from "../../constants/snowflakeQuery.ts";
-
-// console.log("View Query:", viewQuery);
-// console.log("Group By Query:", viewGroupByQuery);
-// console.log("SQL Query:", viewSimpleQuery);
-// console.log("SQL Query:", createTableQuery);
-// console.log("SQL Query:", insertDataQuery);
-// console.log("SQL Query:", createTableQueryOld);
-// console.log("SQL Query:", insertDataQueryOld);
+import snowflakeQuery from "../../constants/snowflakeQuery";
 
 const ExecuteQuery: React.FC = () => {
     const [warehouse, setWarehouse] = useState("SNOW_CAP_SPC");
