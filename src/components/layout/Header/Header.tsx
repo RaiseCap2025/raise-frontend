@@ -1,22 +1,35 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import styles from './Header.module.scss';
+import raiseLogo from '../../../assets/raise-logo.svg';
+import capgeminiLogo from '../../../assets/capgemini-logo.svg';
+import { IconButton } from '@mui/material';
+import ChatIcon from '@mui/icons-material/Chat';
+import MailIcon from '@mui/icons-material/Mail';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Header: React.FC = () => {
-    const navigate = useNavigate();
-    return (
-        <AppBar position="static">
-      <Toolbar>
-        <Typography 
-          variant="h6" 
-          onClick={() => navigate("/")} 
-          style={{ cursor: 'pointer' }}
-        >
-          RAISE
-        </Typography>
-      </Toolbar>
-    </AppBar>
-    );
+  return (
+    <header className={styles.header}>
+      {/* Left: RAISE Logo */}
+      <div className={styles.left}>
+        <img src={raiseLogo} alt="RAISE Logo" className={styles.logo} />
+      </div>
+
+      {/* Center: Action Icons */}
+      <div className={styles.center}>
+        <IconButton><ChatIcon /></IconButton>
+        <IconButton><MailIcon /></IconButton>
+        <IconButton><NotificationsIcon /></IconButton>
+        <IconButton><AccountCircleIcon /></IconButton>
+      </div>
+
+      {/* Right: Capgemini Logo */}
+      <div className={styles.right}>
+        <img src={capgeminiLogo} alt="Capgemini Logo" className={styles.logoRight} />
+      </div>
+    </header>
+  );
 };
 
 export default Header;

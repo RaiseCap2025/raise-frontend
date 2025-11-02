@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f8f8f8;
+  padding: 0 24px;
+  height: 64px;
+}
+
+.left .logo {
+  height: 32px;
+}
+
+.center {
+  display: flex;
+  gap: 24px;
+}
+
+.right .logoRight {
+  height: 28px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .center {
+    gap: 12px;
+  }
+}

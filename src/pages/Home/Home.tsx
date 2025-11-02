@@ -1,34 +1,58 @@
 import React from 'react';
-import { Box } from '@mui/material';
 import styles from './Home.module.scss';
-import { Card, CardContent, Typography } from '@mui/material';
+import Card from '../../components/ui/Card/Card';
 import { useNavigate } from 'react-router-dom';
+import talkToDocumentImg from '../../assets/talk-to-document.svg';
+import talkToDataImg from '../../assets/talk-to-data.svg';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleNavigation = (route: string) => {
-    navigate(route);
-  };
+  const cardData = [
+    {
+      title: 'Talk to Document',
+      description: 'Conversation AI bot for unstructured data',
+      image: talkToDocumentImg,
+      route: '/talk-to-document'
+    },
+    {
+      title: 'Talk to Data',
+      description: 'Conversation AI bot for structured data',
+      image: talkToDataImg,
+      route: '/talk-to-data'
+    },
+    // {
+    //   title: 'View Data',
+    //   description: 'To view data from Snowflake.',
+    //   image: '/src/assets/view-data.svg', // placeholder
+    //   route: '/view-data'
+    // },
+    // {
+    //   title: 'Execute Query',
+    //   description: 'To execute generic queries.',
+    //   image: '/src/assets/execute-query.svg', // placeholder
+    //   route: '/execute-query'
+    // }
+  ];
 
   return (
-    <Box className={styles.home}>
-      <h1>Welcome to the RAISE</h1>
-      <Box display="flex" gap={2}>
-        <Card onClick={() => handleNavigation('/view-data')} style={{ cursor: 'pointer' }}>
-          <CardContent>
-            <Typography variant="h6">View Data</Typography>
-            <Typography variant="body2">To view data from Snowflake.</Typography>
-          </CardContent>
-        </Card>
-        <Card onClick={() => handleNavigation('/execute-query')} style={{ cursor: 'pointer' }}>
-          <CardContent>
-            <Typography variant="h6">Execute Query</Typography>
-            <Typography variant="body2">To execute generic queries.</Typography>
-          </CardContent>
-        </Card>
-      </Box>
-    </Box>
+    <div className={styles.home}>
+      <h1 className={styles.title}>Welcome to RAISE</h1>
+      <p className={styles.tagline}>
+        From idea to AI - design, test, and deploy on a single platform.
+      </p>
+      <div className={styles.cards}>
+        {cardData.map((card, index) => (
+          <Card
+            key={index}
+            title={card.title}
+            description={card.description}
+            image={card.image}
+            onClick={() => navigate(card.route)}
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 

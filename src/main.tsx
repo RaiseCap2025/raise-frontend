@@ -3,22 +3,20 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { getTheme } from './theme';
-import { AppProvider } from './context/AppContext';
 import './styles/index.scss';
+import { AppProvider } from './context/AppContext';
 
 const RootApp: React.FC = () => {
-  const theme = getTheme("light" as 'light' | 'dark');
+  const theme = getTheme('light');
 
   return (
-    <AppProvider>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AppProvider>
         <App />
-      </ThemeProvider>
-    </AppProvider>
+      </AppProvider>
+    </ThemeProvider>
   );
 };
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <RootApp />
-);
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(<RootApp />);
