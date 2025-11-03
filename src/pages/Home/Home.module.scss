@@ -1,46 +1,53 @@
 .home {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+  align-items: flex-start; // Align content to left
+  justify-content: flex-start;
+  min-height: calc(100vh - 64px);
+  padding: 40px 60px; // Add left padding for alignment
+}
+
+.header{
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Centers horizontally
+  justify-content: center; // Centers vertically if needed
   text-align: center;
-  background: url('/src/assets/background.svg') no-repeat center center;
-  background-size: cover;
-  padding: 20px;
-}
-
-.title {
-  font-size: 2.5rem;
-  color: #333; // Updated to match screenshot (neutral/dark tone)
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.tagline {
-  font-size: 1.2rem;
-  color: #555;
+  width: 100%;
   margin-bottom: 30px;
+  padding-top: 100px;
+
+  .title {
+    font-size: 2.5rem;
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  
+  .tagline {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 30px;
+    text-align: left;
+  }
 }
 
 .cards {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: center; // Keep cards centered
+  width: 100%;
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
-  .cards {
-    gap: 16px;
-  }
-}
-
 @media (max-width: 768px) {
-  .cards {
-    flex-direction: column;
-    align-items: center;
+  .home {
+    padding: 20px;
+    align-items: center; // Center everything on mobile
+    text-align: center;
   }
 
   .title {

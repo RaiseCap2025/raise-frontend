@@ -2,11 +2,13 @@ import React from 'react';
 import styles from './Home.module.scss';
 import Card from '../../components/ui/Card/Card';
 import { useNavigate } from 'react-router-dom';
+import { useAppContext } from '../../context/AppContext';
 import talkToDocumentImg from '../../assets/talk-to-document.svg';
 import talkToDataImg from '../../assets/talk-to-data.svg';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
+  const { toggleSidebar } = useAppContext();
 
   const cardData = [
     {
@@ -37,10 +39,12 @@ const Home: React.FC = () => {
 
   return (
     <div className={styles.home}>
-      <h1 className={styles.title}>Welcome to RAISE</h1>
-      <p className={styles.tagline}>
-        From idea to AI - design, test, and deploy on a single platform.
-      </p>
+      <div className={styles.header}>
+        <h1 className={styles.title}>Welcome to RAISE</h1>
+        <p className={styles.tagline}>
+          From idea to AI - design, test, and deploy on a single platform.
+        </p>
+      </div>
       <div className={styles.cards}>
         {cardData.map((card, index) => (
           <Card

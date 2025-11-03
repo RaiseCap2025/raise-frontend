@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background: url('/src/assets/background.svg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed; // Keeps background static
 }
 
 .body {
@@ -13,17 +16,18 @@
 .main {
   flex: 1;
   overflow-y: auto;
-  transition: margin-left 0.3s ease;
+  transition: padding-left 0.3s ease;
 }
 
 .expanded {
-  margin-left: 60px; // Adjust when sidebar is collapsed
+  padding-left: 60px; // Instead of margin-left
 }
 
-/* Responsive Breakpoints */
+/* Responsive */
 @media (max-width: 768px) {
   .body {
     flex-direction: column;
+    margin-top: 64px;
   }
 
   .main {
