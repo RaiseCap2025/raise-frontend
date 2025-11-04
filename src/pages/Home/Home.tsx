@@ -2,13 +2,11 @@ import React from 'react';
 import styles from './Home.module.scss';
 import Card from '../../components/ui/Card/Card';
 import { useNavigate } from 'react-router-dom';
-import { useAppContext } from '../../context/AppContext';
 import talkToDocumentImg from '../../assets/talk-to-document.svg';
 import talkToDataImg from '../../assets/talk-to-data.svg';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
-  const { toggleSidebar } = useAppContext();
 
   const cardData = [
     {
