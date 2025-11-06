@@ -17,7 +17,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Header />
       <div className={styles.body}>
         <Sidebar />
-        <main className={`${styles.main} ${sidebarCollapsed ? styles.expanded : ''}`}>
+        <main className={`${styles.main} ${sidebarCollapsed ? styles.collapsed : styles.expanded}`}>
           {children}
         </main>
       </div>

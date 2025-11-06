@@ -19,8 +19,12 @@
   transition: padding-left 0.3s ease;
 }
 
+.collapsed {
+  padding-left: 80px; // Instead of margin-left
+}
+
 .expanded {
-  padding-left: 60px; // Instead of margin-left
+  padding-left: 240px; // Instead of margin-left
 }
 
 /* Responsive */
