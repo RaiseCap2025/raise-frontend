@@ -9,5 +9,6 @@ export const ROUTES = {
     TALK_TO_DATA: '/talk-to-data',
     VIEW_DATA: '/view-data',
     EXECUTE_QUERY: '/execute-query',
+    UPLOAD: '/upload',
     NOT_FOUND: '*',
   };
