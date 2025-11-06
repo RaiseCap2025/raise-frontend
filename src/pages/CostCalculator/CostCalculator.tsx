@@ -1,18 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { QueryAPI } from '../../api/endpoints/snowflakeQuery.api';
-import {
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-} from 'recharts';
 import { Box, Typography, TextField, Button } from '@mui/material';
 import GenericChart from '../../components/ui/GenericChart/GenericChart';
 import dayjs from 'dayjs';
+import Loader from '../../components/common/Loader/Loader';
 
 interface CostData {
   startTime: string;
@@ -126,7 +117,7 @@ const CostCalculator: React.FC = () => {
       </Box>
 
       {loading ? (
-        <Typography>Loading...</Typography>
+        <Loader message="Loading Data..." /> 
       ) : (
         <>
 

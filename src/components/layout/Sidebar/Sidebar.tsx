@@ -19,7 +19,10 @@ const Sidebar: React.FC = () => {
     { label: 'Activity Log', icon: <ListAltIcon />, path: '/activity-log' },
     { label: 'Monitoring', icon: <MonitorIcon />, path: '/monitoring' },
     { label: 'Cost calculator', icon: <CalculateIcon />, path: '/cost-calculator' },
-    { label: 'Templates', icon: <TableChartIcon />, path: '/templates' }
+    { label: 'Templates', icon: <TableChartIcon />, path: '/templates' },
+    { label: 'Upload', icon: <TableChartIcon />, path: '/upload' },
+    { label: 'View Data', icon: <TableChartIcon />, path: '/view-data' },
+    { label: 'Execute Query', icon: <TableChartIcon />, path: '/execute-query' },
   ];
 
   return (
