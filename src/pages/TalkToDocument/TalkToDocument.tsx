@@ -18,7 +18,7 @@ const TalkToDocument: React.FC = () => {
       return;
     }
     try {
-      const res = await ChatbotAPI.createChatbot('Banking bot', pipeline, 1); // Pass template_id = 1
+      const res = await ChatbotAPI.createChatbot('Banking bot', '101', 2); // Pass template_id = 1
       const id = res.data?.data?.[0]?.[0]; // Adjust based on Snowflake response
       setChatbotId(id);
       alert(`Chatbot created with ID: ${id}`);
@@ -54,7 +54,8 @@ const TalkToDocument: React.FC = () => {
         user: row[1], // question
         bot: row[2],  // response
       }));
-      setChatHistory([...chatHistory, ...history]);
+      const reversedHistory = history.reverse(); // Show oldest first
+      setChatHistory(reversedHistory);
     } catch (error) {
       console.error('Error fetching chat history:', error);
     }

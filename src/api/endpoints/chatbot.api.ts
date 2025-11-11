@@ -11,7 +11,7 @@ export const ChatbotAPI = {
         '${pipelineId.replace(/'/g, "''")}',
         NULL, 'chatbot_app',
         ${templateId},
-        'GPT-4', NULL
+        'mistral-large2', NULL
       );
     `;
     return apiClient.post('/api/v2/statements', JSON.stringify({ statement: sql }));
@@ -21,7 +21,7 @@ export const ChatbotAPI = {
     const sql = `
       CALL ${DB}.${SCHEMA}.R_SP_SAVE_CHATBOT_RESPONSE(
         ${chatbotId},
-        'GPT-4',
+        'mistral-large2',
         '${question.replace(/'/g, "''")}',
         '${response.replace(/'/g, "''")}',
         ${response.length}
@@ -30,14 +30,14 @@ export const ChatbotAPI = {
     return apiClient.post('/api/v2/statements', JSON.stringify({ statement: sql }));
   },
 
-    getResponses: async (chatbotId: number) => {
-        const sql = `
-        SELECT response_id, question, response, start_time
-        FROM SNOW_CAPGE_SPC.SNOW_CAP_RAISE.R_CHATBOT_RESPONSE
-        WHERE chatbot_id = ${chatbotId}
-        ORDER BY start_time DESC;
-        `;
-        return apiClient.post('/api/v2/statements', JSON.stringify({ statement: sql }));
-    },
+  getResponses: async (chatbotId: number) => {
+      const sql = `
+      SELECT response_id, question, response, start_time
+      FROM SNOW_CAPGE_SPC.SNOW_CAP_RAISE.R_CHATBOT_RESPONSE
+      WHERE chatbot_id = ${chatbotId}
+      ORDER BY start_time DESC;
+      `;
+      return apiClient.post('/api/v2/statements', JSON.stringify({ statement: sql }));
+  },
 
 };
