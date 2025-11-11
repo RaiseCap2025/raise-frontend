@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Box, Button, Select, MenuItem, Typography } from '@mui/material';
 import ChatInput from '../../components/ui/ChatInput/ChatInput';
 import { ChatbotAPI } from '../../api/endpoints/chatbot.api';
+import { QueryAPI } from '../../api/endpoints/snowflakeQuery.api';
 
 const TalkToDocument: React.FC = () => {
   const [message, setMessage] = useState('');
@@ -28,22 +29,35 @@ const TalkToDocument: React.FC = () => {
     }
   };
 
+
   const handleSend = async () => {
     if (!chatbotId) {
       alert('Please create a chatbot first!');
       return;
     }
-    // Simulate AI response (replace with actual AI API call later)
-    const aiResponse = `Here is the answer for: ${message}`;
+  
     try {
+      const cortexQuery = `SELECT SNOWFLAKE.CORTEX.COMPLETE('mistral-large2', '${message.replace(/'/g, "''")}');`;
+      const payload = {
+        timeout: 60,
+        warehouse: 'SNOW_CAP_SPC',
+        database: 'SNOW_CAPGE_SPC',
+        schema: 'SNOW_CAP_RAISE',
+        statement: cortexQuery,
+      };
+  
+      const cortexResponse = await QueryAPI.query(JSON.stringify(payload));
+      const aiResponse = cortexResponse.data?.data?.[0]?.[0] || 'No response';
+
       await ChatbotAPI.saveResponse(chatbotId, message, aiResponse);
+  
       setMessage('');
       fetchChatHistory();
     } catch (error) {
-      console.error('Error saving response:', error);
-      alert('Failed to save chatbot response.');
+      console.error('Error during chatbot interaction:', error);
+      alert('Failed to process chatbot message.');
     }
-  };
+  };  
 
   const fetchChatHistory = async () => {
     if (!chatbotId) return;
