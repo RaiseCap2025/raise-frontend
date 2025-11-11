@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    padding: 20px;
+}
+
+.mainContent {
+flex: 2;
+padding: 20px;
+
+.title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.botSection {
+    text-align: center;
+    margin: 40px 0;
+
+    img {
+    width: 200px;
+    }
+
+    .botTitle {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 10px;
+    }
+
+    .botSubtitle {
+    color: #555;
+    font-size: 14px;
+    }
+}
+}
+
+.rightPanel {
+flex: 1;
+padding: 20px;
+border-left: 1px solid #ddd;
+}

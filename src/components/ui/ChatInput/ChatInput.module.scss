@@ -1,0 +1,19 @@
+.chatBox {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    align-items: center;
+    background: #fff;
+    border-radius: 8px;
+    padding: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  
+    input {
+      flex: 1;
+      font-size: 16px;
+    }
+  
+    button {
+      color: #1976d2;
+    }
+}
