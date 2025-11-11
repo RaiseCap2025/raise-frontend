@@ -1,0 +1,29 @@
+/* SCSS for PipelineSection */
+.pipelineSection {
+  margin-bottom: 24px;
+
+  .panelTitle {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .pipelineSelect {
+    margin-bottom: 16px;
+    .MuiSelect-root {
+      border-radius: 8px;
+    }
+  }
+
+  .createPipelineBtn {
+    background-color: #1976d2;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 24px;
+    &:hover {
+      background-color: #1565c0;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+/* SCSS for DocumentSection */
+.documentSection {
+  .panelTitle {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .docItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+
+    .MuiIconButton-root {
+      color: #1976d2;
+      &:hover {
+        background-color: #e6e9ef;
+      }
+    }
+  }
+}

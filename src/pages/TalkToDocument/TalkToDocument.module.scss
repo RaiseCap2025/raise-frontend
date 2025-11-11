@@ -1,41 +1,50 @@
 .container {
     display: flex;
-    padding: 20px;
-}
-
-.mainContent {
-flex: 2;
-padding: 20px;
-
-.title {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-.botSection {
-    text-align: center;
-    margin: 40px 0;
-
-    img {
-    width: 200px;
+    height: 100vh;
+    background-color: #fff;
+    font-family: 'Inter', sans-serif;
+  
+    .chatArea {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+  
+      .heading {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+  
+      .subHeading {
+        font-size: 14px;
+        color: #666;
+      }
+  
+      .chatScroll {
+        flex: 1;
+        overflow-y: auto;
+        margin-top: 16px;
+        padding-right: 8px;
+        padding-bottom: 100px; // space for sticky input
+  
+        &::-webkit-scrollbar {
+          width: 6px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: #ccc;
+          border-radius: 4px;
+        }
+      }
     }
-
-    .botTitle {
-    font-size: 20px;
-    font-weight: 700;
-    margin-top: 10px;
+  
+    .rightPanel {
+      width: 300px;
+      border-left: 1px solid #ddd;
+      padding: 24px;
+      background-color: #fafafa;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
-
-    .botSubtitle {
-    color: #555;
-    font-size: 14px;
-    }
-}
-}
-
-.rightPanel {
-flex: 1;
-padding: 20px;
-border-left: 1px solid #ddd;
-}
+  }
