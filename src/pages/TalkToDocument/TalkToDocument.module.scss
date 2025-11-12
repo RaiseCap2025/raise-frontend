@@ -1,50 +1,71 @@
 .container {
-    display: flex;
-    height: 100vh;
-    background-color: #fff;
-    font-family: 'Inter', sans-serif;
-  
-    .chatArea {
-      flex: 2;
-      display: flex;
-      flex-direction: column;
-      padding: 24px;
-  
-      .heading {
-        font-size: 24px;
-        font-weight: 600;
-        margin-bottom: 4px;
-      }
-  
-      .subHeading {
-        font-size: 14px;
-        color: #666;
-      }
-  
-      .chatScroll {
-        flex: 1;
-        overflow-y: auto;
-        margin-top: 16px;
-        padding-right: 8px;
-        padding-bottom: 100px; // space for sticky input
-  
-        &::-webkit-scrollbar {
-          width: 6px;
-        }
-        &::-webkit-scrollbar-thumb {
-          background: #ccc;
-          border-radius: 4px;
-        }
-      }
-    }
-  
-    .rightPanel {
-      width: 300px;
-      border-left: 1px solid #ddd;
-      padding: 24px;
-      background-color: #fafafa;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-  }
+  display: flex;
+  height: calc(100vh - 64px);
+  background-color: #fff;
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.headerSection {
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.heading {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.subHeading {
+  font-size: 14px;
+  color: #666;
+}
+
+.botSection {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.botImage {
+  height: 240px;
+  width: 240px;
+  margin-bottom: 16px;
+}
+
+.botTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.botDescription {
+  font-size: 14px;
+  color: #555;
+}
+
+.chatScroll {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 16px;
+  padding-right: 8px;
+}
+
+.chatInputWrapper {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.rightPanel {
+  width: 300px;
+  background-color: #fafafa;
+  border-left: 1px solid #ddd;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}

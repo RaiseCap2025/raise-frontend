@@ -7,6 +7,7 @@ import ChatResponse from '../../components/ui/ChatResponse/ChatResponse';
 import ChatInput from '../../components/ui/ChatInput/ChatInput';
 import PipelineSection from '../../components/ui/PipelineSection/PipelineSection';
 import DocumentSection from '../../components/ui/DocumentSection/DocumentSection';
+import bankingBot from '../../assets/banking-bot.svg';
 
 const TalkToDocument: React.FC = () => {
   const [message, setMessage] = useState('');
@@ -74,18 +75,29 @@ const TalkToDocument: React.FC = () => {
   }, [chatbotId]);
 
   return (
-    <Box className={styles.container}>
-      <Box className={styles.chatArea}>
-        <Typography className={styles.heading}>Talk to document</Typography>
-        <Typography className={styles.subHeading}>Experimentation</Typography>
-        <Box className={styles.chatScroll}>
+    <div className={styles.container}>
+      <div className={styles.mainContent}>
+        <div className={styles.headerSection}>
+          <Typography variant="h5" className={styles.heading}>Talk to document</Typography>
+          <Typography variant="body2" className={styles.subHeading}>Experimentation</Typography>
+        </div>
+        {chatHistory.length === 0 &&
+          <div className={styles.botSection}>
+            <img src={bankingBot} alt="Banking bot" className={styles.botImage} />
+            <Typography variant="h6" className={styles.botTitle}>Banking bot</Typography>
+            <Typography variant="body2" className={styles.botDescription}>Experiment with your bot – Your smart banking assistant! Ask me anything</Typography>
+          </div>
+        }
+        <div className={styles.chatScroll}>
           {chatHistory.map((chat, idx) => (
             <ChatResponse key={idx} userText={chat.user} botText={chat.bot} />
           ))}
-        </Box>
-        <ChatInput value={message} onChange={setMessage} onSend={handleSend} />
-      </Box>
-      <Box className={styles.rightPanel}>
+        </div>
+        <div className={styles.chatInputWrapper}>
+          <ChatInput value={message} onChange={setMessage} onSend={handleSend} />
+        </div>
+      </div>
+      <div className={styles.rightPanel}>
         <PipelineSection
           pipeline={pipeline}
           pipelines={pipelines}
@@ -93,8 +105,8 @@ const TalkToDocument: React.FC = () => {
           onCreatePipeline={handleCreatePipeline}
         />
         <DocumentSection documents={documents} />
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };
 
