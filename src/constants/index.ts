@@ -10,5 +10,6 @@ export const ROUTES = {
     VIEW_DATA: '/view-data',
     EXECUTE_QUERY: '/execute-query',
     UPLOAD: '/upload',
+    POC: '/poc',
     NOT_FOUND: '*',
   };

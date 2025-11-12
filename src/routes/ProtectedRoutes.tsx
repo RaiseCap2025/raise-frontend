@@ -7,6 +7,7 @@ const ExecuteQuery = lazy(() => import('../pages/ExecuteQuery/ExecuteQuery'));
 const CostCalculator = lazy(() => import('../pages/CostCalculator/CostCalculator'));
 const UploadPage = lazy(() => import('../pages/UploadPage/UploadPage'));
 const TalkToDocument = lazy(() => import('../pages/TalkToDocument/TalkToDocument'))
+const POC = lazy(() => import('../pages/POC/POC'))
 
 export const ProtectedRoutes: RouteObject[] = [
   { path: ROUTES.VIEW_DATA, element: <ViewData /> },
@@ -14,4 +15,5 @@ export const ProtectedRoutes: RouteObject[] = [
   { path: ROUTES.COST_CALCULATOR, element: <CostCalculator /> },
   { path: ROUTES.UPLOAD, element: <UploadPage /> },
   { path: ROUTES.TALK_TO_DOCUMENT, element: <TalkToDocument /> },
+  { path: ROUTES.POC, element: <POC /> },
 ];

@@ -19,7 +19,7 @@ const Home: React.FC = () => {
       title: 'Talk to Data',
       description: 'Conversation AI bot for structured data',
       image: talkToDataImg,
-      route: '/talk-to-data'
+      route: '/poc'
     },
     // {
     //   title: 'View Data',
