@@ -1,28 +1,12 @@
 .header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   background-color: #f8f8f8;
+  min-height: 64px;
   padding: 0 24px;
-  height: 64px;
+  border-bottom: 1px solid #ddd;
 }
-
-.left .logo {
-  height: 32px;
-}
-
-.center {
-  display: flex;
-  gap: 24px;
-}
-
-.right .logoRight {
-  height: 28px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .center {
-    gap: 12px;
-  }
-}
+.left img { height: 32px; }
+.center img { height: 28px; }
+.right { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #333; }
