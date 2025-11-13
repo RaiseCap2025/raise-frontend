@@ -1,0 +1,32 @@
+.home {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: calc(100vh - 64px);
+    padding: 40px 60px;  
+    background-color: #E1E1E1; 
+    :global(._content_d9nh3_23){
+        padding: 12px;
+        text-align: center;
+        background-color: #fff;
+    }
+    .cards {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center; // Keep cards centered
+        width: 100%;
+      }
+  }
+  
+ 
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .home {
+      padding: 20px;
+      align-items: center; // Center everything on mobile
+      text-align: center;
+    }
+  }

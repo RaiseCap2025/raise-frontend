@@ -1,5 +1,7 @@
 export const ROUTES = {
     HOME: '/',
+    APPLICATION: '/application',
+    EXPERIMENT_DEPLOY: '/experiment-deploy',
     SERVICES: '/services',
     ACTIVITY_LOG: '/activity-log',
     MONITORING: '/monitoring',
@@ -10,6 +12,6 @@ export const ROUTES = {
     VIEW_DATA: '/view-data',
     EXECUTE_QUERY: '/execute-query',
     UPLOAD: '/upload',
-    POC: '/poc',
+    DATA_PREPARATION: '/data-preparation',
     NOT_FOUND: '*',
   };
