@@ -8,6 +8,7 @@ import ChatInput from '../../components/ui/ChatInput/ChatInput';
 import PipelineSection from '../../components/ui/PipelineSection/PipelineSection';
 import DocumentSection from '../../components/ui/DocumentSection/DocumentSection';
 import bankingBot from '../../assets/banking-bot.svg';
+import { tabs } from '../../constants/tabs';
 
 const TalkToDocument: React.FC = () => {
   const [message, setMessage] = useState('');
@@ -90,7 +91,7 @@ const TalkToDocument: React.FC = () => {
         }
         <div className={styles.chatScroll}>
           {chatHistory.map((chat, idx) => (
-            <ChatResponse key={idx} userText={chat.user} botText={chat.bot} />
+            <ChatResponse key={idx} userText={chat.user} botText={chat.bot} tabs={tabs} onRefresh={() => {}}/>
           ))}
         </div>
         <div className={styles.chatInputWrapper}>

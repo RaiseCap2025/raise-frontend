@@ -1,0 +1,11 @@
+.footerActions {
+    display: flex;
+    
+    button {
+        svg {
+            width: .75em;
+            height: .75em;
+            margin: 0;  
+        }
+    }
+}

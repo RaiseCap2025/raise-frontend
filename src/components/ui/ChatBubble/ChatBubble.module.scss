@@ -1,0 +1,38 @@
+.chatBubble {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    // max-width: 80%;
+  }
+  
+  .user {
+    align-self: flex-end;
+    background-color: #333;
+    color: #fff;
+    border-radius: 16px;
+    padding: 12px 16px;
+  }
+  
+  .bot {
+    // background-color: #f8f8f8;
+    // border-radius: 16px;
+    // padding: 16px;
+    // box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  
+  .content {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .footer {
+    display: flex;
+    gap: 12px;
+  }

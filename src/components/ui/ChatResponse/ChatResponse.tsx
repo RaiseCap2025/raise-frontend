@@ -1,41 +1,41 @@
-import React, { useState } from 'react';
-import { Box, Typography, Tabs, Tab, Button, IconButton } from '@mui/material';
-import RefreshIcon from '@mui/icons-material/Refresh';
-import styles from './ChatResponse.module.scss';
-import { tabs } from '../../../constants/tabs';
+import React, { useState } from "react";
+import ChatBubble from "../ChatBubble/ChatBubble";
+import ChatTabs from "../ChatTabs/ChatTabs";
+import ChatFooterActions from "../ChatFooterActions/ChatFooterActions";
+import styles from "./ChatResponse.module.scss";
 
 interface ChatResponseProps {
   userText: string;
   botText: string;
+  tabs: string[];
+  onRefresh?: () => void;
 }
 
-const ChatResponse: React.FC<ChatResponseProps> = ({ userText, botText }) => {
-  const [selectedTab, setSelectedTab] = useState(0);
+const ChatResponse: React.FC<ChatResponseProps> = ({ userText, botText, tabs, onRefresh }) => {
+  const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <Box className={styles.chatResponse} sx={{ display: 'flex', flexDirection: 'column' }}>
-      <Box className={styles.userBubble}>{userText}</Box>
-      <Box className={styles.botBubble}>
-        <Tabs
-          value={selectedTab}
-          onChange={(e, val) => setSelectedTab(val)}
-          variant="scrollable"
-          className={styles.modelTabs}
-        >
-          {tabs.map((tab, index) => (
-            <Tab key={index} label={tab} />
-          ))}
-        </Tabs>
-        <Typography>{botText}</Typography>
-        <Box className={styles.actionButtons}>
-          <Button variant="outlined" size="small">Relevant sections</Button>
-          <IconButton><RefreshIcon /></IconButton>
-          <IconButton>👍</IconButton>
-          <IconButton>👎</IconButton>
-          <IconButton>📋</IconButton>
-        </Box>
-      </Box>
-    </Box>
+    <div className={styles.chatResponse}>
+      {/* User Bubble */}
+      <ChatBubble variant="user">{userText}</ChatBubble>
+
+      {/* Bot Bubble */}
+      <ChatBubble
+        variant="bot"
+        header={
+          <div className={styles.botHeader}>
+            <div className={styles.botHeaderTop}>
+              <span className={styles.brand}>RAISE</span>
+              <button className={styles.refreshBtn} onClick={onRefresh}>⟳</button>
+            </div>
+            <ChatTabs tabs={tabs} activeIndex={activeTab} onChange={setActiveTab} />
+          </div>
+        }
+        footer={<ChatFooterActions />}
+      >
+        <div className={styles.botContent} dangerouslySetInnerHTML={{ __html: botText }} />
+      </ChatBubble>
+    </div>
   );
 };
 
