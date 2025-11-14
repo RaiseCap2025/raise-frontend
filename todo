@@ -12,3 +12,4 @@
  Unit test runner (Vitest)
  Add monitoring (Sentry/LogRocket)
  Add authentication provider and secure routes
+ Add component library
