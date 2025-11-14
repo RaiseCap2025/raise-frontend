@@ -7,7 +7,7 @@
     padding: 40px 60px;  
     background-color: #E1E1E1; 
     :global(._content_d9nh3_23){
-        padding: 12px;
+        padding: 0;
         text-align: center;
         background-color: #fff;
     }
@@ -17,7 +17,17 @@
         flex-wrap: wrap;
         justify-content: center; // Keep cards centered
         width: 100%;
+        :global(._card_d9nh3_1){
+          padding: 2%;
+          :global(._image_d9nh3_17) {
+            width: 60%;
+            height: 60%;
+            margin: 0 auto;
+            object-fit: cover;
+          }
+        }
       }
+      
   }
   
  
