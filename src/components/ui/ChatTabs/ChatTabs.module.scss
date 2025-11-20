@@ -1,24 +1,46 @@
 @use '../../../styles/tokens' as *;
 @use '../../../styles/mixins' as *;
 
-.tabs {
-    display: flex;
-    gap: 16px;
-  }
-  
-  .tab {
-    background: none;
-    border: none;
-    font-size: 14px;
-    cursor: pointer;
-    padding: 6px 12px;
-  }
-  
-  .active {
-    font-weight: bold;
-    border-bottom: 2px solid #1976d2;
-  }
+.tabsContainer {
+  display: flex;
+  gap: $spacing-3;
+  margin-bottom: $spacing-2;
+  flex-wrap: wrap;
+}
 
-  button{
-    border-radius: unset;
+.tab {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  font-weight: $font-weight-medium;
+  color: #666;
+  cursor: pointer;
+  padding: $spacing-2 0;
+  position: relative;
+  transition: color $transition-duration-base $transition-timing-ease;
+  border-radius: 0;
+  
+  &:hover {
+    color: #333;
   }
+  
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.active {
+  color: #000;
+  font-weight: $font-weight-semibold;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #000;
+  }
+}

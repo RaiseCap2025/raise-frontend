@@ -7,6 +7,7 @@ import { ChatbotAPI } from '../../api/endpoints/chatbot.api';
 import { QueryAPI } from '../../api/endpoints/snowflakeQuery.api';
 import ChatResponse from '../../components/ui/ChatResponse/ChatResponse';
 import ChatInput from '../../components/ui/ChatInput/ChatInput';
+import ChatBottomActions from '../../components/ui/ChatBottomActions/ChatBottomActions';
 import CollapsiblePanel from '../../components/ui/CollapsiblePanel/CollapsiblePanel';
 import PipelinePanel from '../../components/ui/PipelinePanel/PipelinePanel';
 import ModelComparisonPanel, { type ModelComparisonData } from '../../components/ui/ModelComparisonPanel/ModelComparisonPanel';
@@ -23,15 +24,7 @@ const mockChatHistory : { user: string; bot: string }[] = [
   {
     user: "Can you tell me about your features?",
     bot: "Sure! I can help with text generation, summaries, coding support, and more.",
-  },
-  {
-    user: "Great! Show me an example.",
-    bot: "Absolutely! Here’s a simple demonstration of how I respond.",
-  },
-  {
-    user: "Thanks!",
-    bot: "You're welcome! Let me know if you need help with anything else.",
-  },
+  }
 ]
 
 const TalkToDocument: React.FC = () => {
@@ -145,6 +138,10 @@ const TalkToDocument: React.FC = () => {
     }
   };
 
+  const handleDeploy = () => {
+    alert('Deploy functionality will be implemented');
+  };
+
   useEffect(() => {
     if (chatbotId) fetchChatHistory();
   }, [chatbotId]);
@@ -154,7 +151,10 @@ const TalkToDocument: React.FC = () => {
       <div className={styles.mainContent}>
         <div className={styles.headerSection}>
           <Typography variant="h5" className={styles.heading}>Talk to document</Typography>
-          <Typography variant="body2" className={styles.subHeading}>Experimentation</Typography>
+          <Typography variant="body2" className={styles.subHeading}>
+            <DescriptionOutlinedIcon className={styles.icon} />
+            Experimentation
+          </Typography>
         </div>
         
         {chatHistory.length === 0 && (
@@ -175,13 +175,26 @@ const TalkToDocument: React.FC = () => {
               botText={chat.bot} 
               tabs={tabs} 
               onRefresh={() => {}}
-              onModelComparison={handleModelComparison}
             />
           ))}
         </div>
         
+        {/* Bottom Action Buttons */}
+        {chatHistory.length > 0 && (
+          <ChatBottomActions 
+            onModelComparison={handleModelComparison}
+            onDeploy={handleDeploy}
+          />
+        )}
+        
+        {/* Chat Input */}
         <div className={styles.chatInputWrapper}>
-          <ChatInput value={message} onChange={setMessage} onSend={handleSend} />
+          <ChatInput 
+            value={message} 
+            onChange={setMessage} 
+            onSend={handleSend}
+            placeholder="Message to Raise"
+          />
         </div>
       </div>
 

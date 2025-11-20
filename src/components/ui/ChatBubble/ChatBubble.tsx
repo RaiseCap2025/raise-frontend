@@ -3,17 +3,29 @@ import styles from "./ChatBubble.module.scss";
 
 interface ChatBubbleProps {
   variant: "user" | "bot";
+  children: React.ReactNode;
   header?: React.ReactNode;
   footer?: React.ReactNode;
-  children: React.ReactNode;
 }
 
-const ChatBubble: React.FC<ChatBubbleProps> = ({ variant, header, footer, children }) => {
+const ChatBubble: React.FC<ChatBubbleProps> = ({ variant, children, header, footer }) => {
+  if (variant === "user") {
+    return (
+      <div className={styles.userBubbleWrapper}>
+        <div className={styles.userBubble}>
+          {children}
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className={`${styles.chatBubble} ${styles[variant]}`}>
-      {header && <div className={styles.header}>{header}</div>}
-      <div className={styles.content}>{children}</div>
-      {footer && <div className={styles.footer}>{footer}</div>}
+    <div className={styles.botBubbleWrapper}>
+      {header && <div className={styles.botHeader}>{header}</div>}
+      <div className={styles.botBubble}>
+        {children}
+      </div>
+      {footer && <div className={styles.botFooter}>{footer}</div>}
     </div>
   );
 };

@@ -158,9 +158,10 @@ button {
   background-color: $color-primary;
   color: $color-primary-contrast;
 
-  &:hover:not(:disabled) {
-    background-color: $color-primary-dark;
-  }
+  // TODO
+  // &:hover:not(:disabled) {
+  //   background-color: $color-primary-dark;
+  // }
 }
 
 // Reset button styles for icon buttons

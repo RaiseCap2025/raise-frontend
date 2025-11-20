@@ -9,7 +9,7 @@ interface ChatTabsProps {
 
 const ChatTabs: React.FC<ChatTabsProps> = ({ tabs, activeIndex, onChange }) => {
   return (
-    <div className={styles.tabs}>
+    <div className={styles.tabsContainer}>
       {tabs.map((tab, index) => (
         <button
           key={index}

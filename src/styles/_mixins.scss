@@ -180,10 +180,11 @@
     opacity: 0.6;
   }
 
-  &:focus {
-    outline: 2px solid $color-primary;
-    outline-offset: 2px;
-  }
+  // TODO
+  // &:focus {
+  //   outline: 2px solid $color-primary;
+  //   outline-offset: 2px;
+  // }
 }
 
 @mixin button-primary {
