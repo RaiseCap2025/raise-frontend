@@ -1,42 +1,48 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
 .home {
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: calc(100vh - 64px);
-    padding: 40px 60px;  
-    background-color: #E1E1E1; 
-    :global(._content_d9nh3_23){
-        padding: 0;
-        text-align: center;
-        background-color: #fff;
-    }
-    .cards {
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
-        justify-content: center; // Keep cards centered
-        width: 100%;
-        :global(._card_d9nh3_1){
-          padding: 2%;
-          :global(._image_d9nh3_17) {
-            width: 60%;
-            height: 60%;
-            margin: 0 auto;
-            object-fit: cover;
-          }
-        }
-      }
-      
+  @include flex-center;
+  position: relative;
+  min-height: calc(100vh - $header-height);
+  padding: $spacing-10 $spacing-16;
+  background-color: $color-background-tertiary;
+
+  @include respond-below(lg) {
+    padding: $spacing-8 $spacing-10;
   }
-  
- 
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .home {
-      padding: 20px;
-      align-items: center; // Center everything on mobile
-      text-align: center;
+
+  @include respond-below(md) {
+    padding: $spacing-6 $spacing-8;
+  }
+
+  @include respond-below(sm) {
+    padding: $spacing-5 $spacing-4;
+  }
+
+  :global(._content_14je3_63) {
+    padding: 0;
+    text-align: center;
+    background-color: $color-background;
+  }
+}
+
+.cards {
+  display: flex;
+  gap: $spacing-5;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+
+  :global(._card_14je3_19) {
+    padding: $spacing-4;
+
+    :global(._image_14je3_51) {
+      width: 60%;
+      height: 60%;
+      margin: 0 auto;
+      object-fit: cover;
+      background-color: unset;
     }
   }
+}

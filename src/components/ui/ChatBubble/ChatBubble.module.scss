@@ -1,38 +1,108 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
 .chatBubble {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 16px;
-    // max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $spacing-4;
+  max-width: 100%;
+  animation: fadeIn $transition-duration-base $transition-timing-ease;
+  
+  @include respond-below(md) {
+    margin-bottom: $spacing-3;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.user {
+  align-self: flex-end;
+  background-color: $color-gray-800;
+  color: $color-text-inverse;
+  border-radius: $border-radius-lg;
+  padding: $spacing-3 $spacing-4;
+  max-width: 80%;
+  box-shadow: $shadow-sm;
+  word-wrap: break-word;
+  
+  @include respond-below(md) {
+    max-width: 90%;
+    padding: $spacing-2 $spacing-3;
+    font-size: $font-size-sm;
   }
   
-  .user {
-    align-self: flex-end;
-    background-color: #333;
-    color: #fff;
-    border-radius: 16px;
-    padding: 12px 16px;
+  @include respond-below(sm) {
+    max-width: 95%;
+  }
+}
+
+.bot {
+  align-self: flex-start;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: $spacing-3;
+  gap: $spacing-4;
+  flex-wrap: wrap;
+  
+  @include respond-below(md) {
+    gap: $spacing-2;
+    margin-bottom: $spacing-2;
+  }
+}
+
+.content {
+  font-size: $font-size-sm;
+  line-height: $line-height-relaxed;
+  color: $color-text-primary;
+  word-wrap: break-word;
+  
+  p {
+    margin: 0 0 $spacing-2;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
   
-  .bot {
-    // background-color: #f8f8f8;
-    // border-radius: 16px;
-    // padding: 16px;
-    // box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  strong {
+    font-weight: $font-weight-semibold;
   }
   
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
+  code {
+    background-color: $color-gray-100;
+    padding: $spacing-1 $spacing-2;
+    border-radius: $border-radius-sm;
+    font-family: $font-family-mono;
+    font-size: $font-size-xs;
   }
   
-  .content {
-    font-size: 14px;
-    line-height: 1.5;
+  @include respond-below(md) {
+    font-size: $font-size-xs;
   }
+}
+
+.footer {
+  display: flex;
+  gap: $spacing-3;
+  margin-top: $spacing-3;
+  flex-wrap: wrap;
   
-  .footer {
-    display: flex;
-    gap: 12px;
+  @include respond-below(md) {
+    gap: $spacing-2;
+    margin-top: $spacing-2;
   }
+}

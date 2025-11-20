@@ -1,12 +1,56 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #f8f8f8;
-  min-height: 64px;
-  padding: 0 24px;
-  border-bottom: 1px solid #ddd;
+  @include flex-between;
+  background-color: $color-background-secondary;
+  min-height: $header-height;
+  padding: 0 $spacing-6;
+  border-bottom: $border-width-thin solid $color-border;
+  box-shadow: $shadow-sm;
+  
+  @include respond-below(md) {
+    padding: 0 $spacing-4;
+  }
 }
-.left img { height: 32px; }
-.center img { height: 28px; }
-.right { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #333; }
+
+.left {
+  img {
+    height: $spacing-8;
+    
+    @include respond-below(md) {
+      height: $spacing-6;
+    }
+  }
+}
+
+.center {
+  img {
+    height: $spacing-7;
+    
+    @include respond-below(md) {
+      height: $spacing-5;
+    }
+  }
+}
+
+.right {
+  @include flex-center;
+  gap: $spacing-2;
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+  
+  svg {
+    color: $color-primary;
+  }
+  
+  @include respond-below(md) {
+    font-size: $font-size-xs;
+  }
+}
+
+.user {
+  @include respond-below(sm) {
+    display: none;
+  }
+}

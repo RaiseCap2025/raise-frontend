@@ -3,6 +3,7 @@ import { Box, Button, Typography } from '@mui/material';
 import UploadProgress from '../UploadProgress/UploadProgress';
 import { RaiseBackendAPI } from '../../../api/endpoints/raiseBackend.api';
 import type { UploadStatus } from '../../../api/types/raiseBackend.types';
+import styles from './MultiFileUploadForm.module.scss'; 
 
 const CHUNK_SIZE = 3 * 1024 * 1024; // 3 MB
 
@@ -57,19 +58,11 @@ const MultiFileUploadForm: React.FC = () => {
   };
 
   return (
-    <Box>
+    <Box className={styles.container}>
       <Box
         onDrop={handleDrop}
         onDragOver={(e) => e.preventDefault()}
-        sx={{
-          border: '2px dashed #ccc',
-          borderRadius: '8px',
-          p: 4,
-          textAlign: 'center',
-          mb: 2,
-        }}
       >
-        <Typography>Drag & Drop files here or click below to select</Typography>
         <input
           type="file"
           multiple
@@ -77,15 +70,6 @@ const MultiFileUploadForm: React.FC = () => {
           style={{ marginTop: '10px' }}
         />
       </Box>
-
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleUpload}
-        disabled={files.length === 0}
-      >
-        Upload All
-      </Button>
 
       <Box mt={2}>
         {Object.entries(uploadStatus).map(([chunkName, progress]) => (

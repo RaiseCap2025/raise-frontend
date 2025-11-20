@@ -1,29 +1,40 @@
-/* SCSS for PipelineSection */
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
 .pipelineSection {
-  margin-bottom: 24px;
+  margin-bottom: $spacing-6;
+}
 
-  .panelTitle {
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 8px;
+.panelTitle {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  margin-bottom: $spacing-2;
+  color: $color-text-primary;
+}
+
+.pipelineSelect {
+  margin-bottom: $spacing-4;
+
+  :global(.MuiSelect-root) {
+    border-radius: $border-radius-md;
+  }
+}
+
+.createPipelineBtn {
+  background-color: $color-primary;
+  color: $color-white;
+  font-weight: $font-weight-semibold;
+  border-radius: $border-radius-md;
+  padding: $spacing-3;
+  margin-bottom: $spacing-6;
+  transition: $transition-colors;
+
+  &:hover {
+    background-color: $color-primary-dark;
   }
 
-  .pipelineSelect {
-    margin-bottom: 16px;
-    .MuiSelect-root {
-      border-radius: 8px;
-    }
-  }
-
-  .createPipelineBtn {
-    background-color: #1976d2;
-    color: #fff;
-    font-weight: 600;
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 24px;
-    &:hover {
-      background-color: #1565c0;
-    }
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
   }
 }

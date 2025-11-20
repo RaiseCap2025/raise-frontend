@@ -1,68 +1,47 @@
-import React, { useState } from 'react';
+// src/pages/DataPreparation/DataPreparation.tsx
+
+import React from 'react';
+import { Box, Paper, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import PipelineForm from '../../components/ui/PipelineForm/PipelineForm';
+import type { PipelineFormData } from '../../types/dataPreparation';
 import styles from './DataPreparation.module.scss';
-import uploadIcon from '../../assets/upload-file.svg';
-import cloudIcon from '../../assets/upload-file.svg';
-import dbIcon from '../../assets/upload-file.svg';
-import infoIcon from '../../assets/upload-file.svg';
+import PipelineCard from '../../components/ui/PipelineCard/PipelineCard';
 
 const DataPreparation: React.FC = () => {
-  const [pipelineName, setPipelineName] = useState('');
-  const [sourceType, setSourceType] = useState('');
+  const navigate = useNavigate();
 
-  const isNextDisabled = !pipelineName || !sourceType;
+  const handleSubmit = (data: PipelineFormData) => {
+    console.log('Form submitted:', data);
+    // TODO: Handle form submission
+    // Navigate to next step or save data
+    alert(`Pipeline created: ${data.pipelineName} with source: ${data.sourceType}`);
+  };
+
+  const handleBack = () => {
+    navigate('/application');
+  };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.card}>
-        <h2 className={styles.title}>Create new data pipeline</h2>
+    <Box className={styles.pageContainer}>
+      <Box className={styles.contentWrapper}>
+        <Typography className={styles.pageTitle}>
+          Application
+        </Typography>
 
-        {/* Input Field */}
-        <div className={styles.inputWrapper}>
-          <input
-            type="text"
-            placeholder="Enter new data pipeline name*"
-            value={pipelineName}
-            onChange={(e) => setPipelineName(e.target.value)}
-            className={styles.input}
-          />
-          <img src={infoIcon} alt="info" className={styles.infoIcon} />
-        </div>
+        <Box className={styles.formWrapper}>
+          <Typography className={styles.formTitle}>
+            Create new data pipeline
+          </Typography>
 
-        {/* File Source Options */}
-        <div className={styles.sectionTitle}>Select file source type*</div>
-        <div className={styles.options}>
-          <button
-            className={`${styles.option} ${sourceType === 'upload' ? styles.active : ''}`}
-            onClick={() => setSourceType('upload')}
-          >
-            <img src={uploadIcon} alt="Upload" />
-            <span>Upload file</span>
-          </button>
-          <button
-            className={`${styles.option} ${sourceType === 'cloud' ? styles.active : ''}`}
-            onClick={() => setSourceType('cloud')}
-          >
-            <img src={cloudIcon} alt="Cloud" />
-            <span>Cloud storage</span>
-          </button>
-          <button
-            className={`${styles.option} ${sourceType === 'database' ? styles.active : ''}`}
-            onClick={() => setSourceType('database')}
-          >
-            <img src={dbIcon} alt="Database" />
-            <span>Database</span>
-          </button>
-        </div>
-
-        {/* Navigation Buttons */}
-        <div className={styles.actions}>
-          <button className={styles.backBtn}>← Back</button>
-          <button className={`${styles.nextBtn} ${isNextDisabled ? styles.disabled : ''}`} disabled={isNextDisabled}>
-            Next →
-          </button>
-        </div>
-      </div>
-    </div>
+          <PipelineCard>
+            <Box className={styles.formCard}>
+              <PipelineForm onSubmit={handleSubmit} onBack={handleBack} />
+            </Box>
+          </PipelineCard>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

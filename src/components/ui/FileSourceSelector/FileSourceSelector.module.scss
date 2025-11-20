@@ -1,0 +1,129 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.container {
+  margin-bottom: 0;
+}
+
+.labelContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-3;
+  gap: $spacing-2;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: $font-weight-normal;
+  color: $color-text-primary;
+}
+
+.required {
+  color: $color-error;
+}
+
+.helpIcon {
+  color: $color-text-disabled;
+  padding: 0;
+  margin-left: $spacing-1;
+  
+  &:hover {
+    color: $color-primary;
+    background-color: transparent;
+  }
+  
+  svg {
+    font-size: 18px;
+  }
+}
+
+.optionsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-4;
+  padding-right: $spacing-10;
+  
+  @include respond-below(lg) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-3;
+  }
+  
+  @include respond-below(md) {
+    grid-template-columns: 1fr;
+    gap: $spacing-3;
+  }
+}
+
+.optionCard {
+  @include flex-between;
+  align-items: center;
+  padding: $spacing-4;
+  background-color: $color-background;
+  border: 1px solid #d0d7de;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all $transition-duration-base $transition-timing-ease;
+  position: relative;
+  
+  &:hover {
+    border-color: #1976d2;
+    background-color: rgba($color-primary, 0.02);
+  }
+  
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+  
+  @include respond-below(md) {
+    padding: $spacing-3 $spacing-4;
+  }
+}
+
+.selected {
+  border-color: #1976d2 !important;
+  border-width: 2px !important;
+  background-color: rgba($color-primary, 0.04) !important;
+  
+  .optionLabel {
+    color: #1976d2;
+    font-weight: $font-weight-normal;
+  }
+  
+  .optionIcon {
+    color: #1976d2;
+  }
+}
+
+.radio {
+  margin-right: $spacing-3;
+  flex-shrink: 0;
+}
+
+.optionLabel {
+  flex: 1;
+  font-size: 15px;
+  font-weight: $font-weight-normal;
+  color: $color-text-primary;
+  transition: color $transition-duration-base $transition-timing-ease;
+}
+
+.optionIcon {
+  @include flex-center;
+  color: #6e7781;
+  margin-left: $spacing-3;
+  flex-shrink: 0;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.error {
+  display: block;
+  margin-top: $spacing-2;
+  font-size: $font-size-xs;
+  color: $color-error;
+}

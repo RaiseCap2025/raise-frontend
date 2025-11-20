@@ -1,0 +1,81 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.formContainer {
+  @include flex-column;
+  gap: $spacing-10;
+  
+  @include respond-below(md) {
+    gap: $spacing-8;
+  }
+}
+
+.formContent {
+  flex: 1;
+  @include flex-column;
+  gap: $spacing-4;
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.labelContainer {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-3;
+  gap: $spacing-2;
+}
+
+.inputLabel {
+  font-size: 14px;
+  font-weight: $font-weight-normal;
+  color: $color-text-primary;
+  display: block;
+}
+
+.required {
+  color: $color-error;
+}
+
+.helpIcon {
+  color: $color-text-disabled;
+  padding: 0;
+  margin-left: $spacing-1;
+  
+  &:hover {
+    color: $color-primary;
+    background-color: transparent;
+  }
+  
+  svg {
+    font-size: 18px;
+  }
+}
+
+.actions {
+  @include flex-center;
+  gap: $spacing-4;
+  margin-top: auto;
+  padding-top: 0;
+  
+  @include respond-below(sm) {
+    flex-direction: column-reverse;
+    width: 100%;
+    gap: $spacing-3;
+  }
+}
+
+.backButton {
+  @include respond-below(sm) {
+    width: 100%;
+  }
+}
+
+.nextButton {
+  @include respond-below(sm) {
+    width: 100%;
+  }
+}
