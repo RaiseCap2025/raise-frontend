@@ -23,7 +23,8 @@ const CollapsiblePanel: React.FC<CollapsiblePanelProps> = ({
 }) => {
   return (
     <div className={`${styles.panel} ${className}`}>
-      <div className={styles.header}>
+      {/* TODO   */}
+      {/* <div className={styles.header}>
         <div className={styles.titleSection}>
           {headerIcon && <span className={styles.headerIcon}>{headerIcon}</span>}
           <h3 className={styles.title}>{title}</h3>
@@ -36,7 +37,7 @@ const CollapsiblePanel: React.FC<CollapsiblePanelProps> = ({
         >
           {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </IconButton>
-      </div>
+      </div> */}
       
       <div className={`${styles.content} ${isExpanded ? styles.expanded : styles.collapsed}`}>
         {children}

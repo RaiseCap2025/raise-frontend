@@ -107,7 +107,7 @@ const TalkToDocument: React.FC = () => {
     try {
       // Simulate fetching model comparison data
       // In production, this would be an actual API call
-      const models = ['Llama 3.0', 'Mistral Large 2.0', 'Gemini 2.5 Flash'];
+      const models = ['Llama 3.0'];
       const comparisonPromises = models.map(async (modelName) => {
         // Simulate API delay
         await new Promise(resolve => setTimeout(resolve, 1000));

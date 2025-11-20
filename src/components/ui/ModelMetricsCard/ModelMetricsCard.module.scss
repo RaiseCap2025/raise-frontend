@@ -2,91 +2,199 @@
 @use '../../../styles/mixins' as *;
 
 .card {
-  background-color: $color-background;
-  border-radius: $border-radius-md;
-  padding: $spacing-4;
-  margin-bottom: $spacing-4;
-  border: $border-width-thin solid $color-border-light;
-  transition: box-shadow $transition-duration-base $transition-timing-ease;
-
-  &:hover {
-    box-shadow: $shadow-sm;
-  }
-
-  &:last-child {
-    margin-bottom: 0;
+  background-color: #F0F4F9;
+  border-radius: $border-radius-lg;
+  padding: $spacing-8;
+  margin-bottom: $spacing-6;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-8;
+  
+  @include respond-below(md) {
+    padding: $spacing-6;
+    gap: $spacing-6;
   }
 }
 
-.header {
-  margin-bottom: $spacing-3;
-  padding-bottom: $spacing-2;
-  border-bottom: $border-width-thin solid $color-border-light;
+// Summary Metrics Section
+.summarySection {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
 }
 
-.modelName {
-  font-size: $font-size-base;
+.sectionTitle {
+  font-size: $font-size-xl;
   font-weight: $font-weight-semibold;
   color: $color-text-primary;
   margin: 0;
 }
 
-.responseSection {
-  margin-bottom: $spacing-4;
-}
-
-.responseLabel {
-  font-size: $font-size-xs;
-  font-weight: $font-weight-medium;
-  color: $color-text-secondary;
-  margin-bottom: $spacing-2;
-  display: block;
-}
-
-.responseText {
-  background-color: $color-background-secondary;
-  border-radius: $border-radius-sm;
-  padding: $spacing-3;
-  max-height: 150px;
-  overflow-y: auto;
+.summaryCards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-4;
   
-  @include custom-scrollbar;
-
-  p {
-    font-size: $font-size-sm;
-    line-height: $line-height-relaxed;
-    color: $color-text-primary;
-    margin: 0;
-    word-wrap: break-word;
+  @include respond-below(md) {
+    grid-template-columns: 1fr;
   }
+}
+
+.summaryCard {
+  background-color: $color-background;
+  border-radius: $border-radius-lg;
+  padding: $spacing-6;
+  display: flex;
+  align-items: center;
+  gap: $spacing-4;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.iconCircle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.summaryIcon {
+  font-size: 32px;
+}
+
+.summaryContent {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-1;
+}
+
+.summaryValue {
+  font-size: 48px;
+  font-weight: $font-weight-normal;
+  color: $color-text-primary;
+  line-height: 1;
+  margin: 0;
+  
+  @include respond-below(md) {
+    font-size: 36px;
+  }
+}
+
+.summaryLabel {
+  font-size: $font-size-base;
+  color: $color-text-secondary;
+  font-weight: $font-weight-normal;
+}
+
+// Recommended Model Section
+.recommendedSection {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+}
+
+.recommendedCard {
+  background-color: $color-background;
+  border-radius: $border-radius-lg;
+  padding: $spacing-6;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.modelHeader {
+  display: flex;
+  gap: $spacing-4;
+  align-items: flex-start;
+}
+
+.modelIcon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-text-primary;
+  
+  svg {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.modelInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+}
+
+.modelSubtext {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  line-height: $line-height-relaxed;
+  margin: 0;
+}
+
+.modelNameLarge {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-semibold;
+  color: #1976D2;
+  margin: 0;
+  
+  @include respond-below(md) {
+    font-size: $font-size-xl;
+  }
+}
+
+.recommendationText {
+  font-size: $font-size-base;
+  color: $color-text-primary;
+  line-height: $line-height-relaxed;
+  margin: 0;
+}
+
+// Performance Metrics Section
+.performanceSection {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
 }
 
 .metricsGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: $spacing-3;
+  gap: $spacing-4;
+  background-color: $color-background;
+  border-radius: $border-radius-lg;
+  padding: $spacing-6;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   
   @include respond-below(md) {
     grid-template-columns: 1fr;
-    gap: $spacing-2;
+    gap: $spacing-3;
   }
 }
 
 .metricItem {
   display: flex;
   flex-direction: column;
-  gap: $spacing-1;
+  gap: $spacing-2;
 }
 
 .metricLabel {
-  font-size: $font-size-xs;
+  font-size: $font-size-sm;
   color: $color-text-secondary;
   text-transform: capitalize;
   font-weight: $font-weight-normal;
 }
 
 .metricValue {
-  font-size: $font-size-sm;
+  font-size: $font-size-lg;
   font-weight: $font-weight-semibold;
   color: $color-text-primary;
 }
