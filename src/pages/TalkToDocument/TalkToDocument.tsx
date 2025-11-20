@@ -86,7 +86,7 @@ const TalkToDocument: React.FC = () => {
     }
     try {
       const res = await ChatbotAPI.createChatbot('Banking bot', '101', 2);
-      const id = res.data?.data?.[0]?.[0];
+      const id = (res as { data?: { data?: any[][] } }).data?.data?.[0]?.[0];
       setChatbotId(id);
       alert(`Chatbot created with ID: ${id}`);
     } catch (error) {
@@ -99,7 +99,7 @@ const TalkToDocument: React.FC = () => {
     if (!chatbotId) return;
     try {
       const res = await ChatbotAPI.getResponses(chatbotId);
-      const rows: string[][] = res.data?.data || [];
+      const rows: string[][] = (res as { data?: { data?: string[][] } }).data?.data || [];
       const history = rows.map(row => ({ user: row[1], bot: row[2] }));
       setChatHistory(history.reverse());
     } catch (error) {
