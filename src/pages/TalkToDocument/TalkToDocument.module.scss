@@ -83,13 +83,12 @@
 }
 
 .rightPanel {
-  width: 300px;
-  background-color: $color-background-secondary;
+  width: 400px;
+  background-color: $color-background;
   border-left: $border-width-thin solid $color-border;
   padding: $spacing-6;
-  @include flex-column;
-  gap: $spacing-6;
   overflow-y: auto;
+  transition: all $transition-duration-base $transition-timing-ease;
 
   @include custom-scrollbar;
 
@@ -97,6 +96,19 @@
     width: 100%;
     border-left: none;
     border-top: $border-width-thin solid $color-border;
-    max-height: 300px;
+    max-height: 400px;
   }
+}
+
+.modelComparisonView {
+  background-color: #F0F4F9;
+  width: 700px;
+
+  @include respond-below(lg) {
+    width: 100%;
+  }
+}
+
+.modelComparisonPanel {
+  background-color: transparent;
 }

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Button } from "@mui/material";
+import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 import ChatBubble from "../ChatBubble/ChatBubble";
 import ChatTabs from "../ChatTabs/ChatTabs";
 import ChatFooterActions from "../ChatFooterActions/ChatFooterActions";
@@ -9,9 +11,16 @@ interface ChatResponseProps {
   botText: string;
   tabs: string[];
   onRefresh?: () => void;
+  onModelComparison?: () => void;
 }
 
-const ChatResponse: React.FC<ChatResponseProps> = ({ userText, botText, tabs, onRefresh }) => {
+const ChatResponse: React.FC<ChatResponseProps> = ({ 
+  userText, 
+  botText, 
+  tabs, 
+  onRefresh,
+  onModelComparison 
+}) => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
@@ -26,7 +35,20 @@ const ChatResponse: React.FC<ChatResponseProps> = ({ userText, botText, tabs, on
           <div className={styles.botHeader}>
             <div className={styles.botHeaderTop}>
               <span className={styles.brand}>RAISE</span>
-              <button className={styles.refreshBtn} onClick={onRefresh}>⟳</button>
+              <div className={styles.actions}>
+                {onModelComparison && (
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    startIcon={<CompareArrowsIcon />}
+                    onClick={onModelComparison}
+                    className={styles.compareBtn}
+                  >
+                    Model Comparison
+                  </Button>
+                )}
+                <button className={styles.refreshBtn} onClick={onRefresh}>⟳</button>
+              </div>
             </div>
             <ChatTabs tabs={tabs} activeIndex={activeTab} onChange={setActiveTab} />
           </div>

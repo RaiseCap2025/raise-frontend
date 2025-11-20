@@ -1,0 +1,76 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.panel {
+  background-color: $color-background;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  transition: all $transition-duration-base $transition-timing-ease;
+}
+
+.header {
+  @include flex-between;
+  align-items: center;
+  padding: $spacing-4;
+  border-bottom: $border-width-thin solid $color-border-light;
+  background-color: $color-background;
+}
+
+.titleSection {
+  @include flex-start;
+  align-items: center;
+  gap: $spacing-2;
+  flex: 1;
+}
+
+.headerIcon {
+  @include flex-center;
+  color: $color-text-secondary;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.title {
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin: 0;
+}
+
+.toggleButton {
+  color: $color-text-secondary;
+  padding: $spacing-1;
+  transition: transform $transition-duration-base $transition-timing-ease;
+  
+  &:hover {
+    background-color: rgba($color-primary, 0.1);
+    color: $color-primary;
+  }
+  
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.content {
+  transition: max-height $transition-duration-slow $transition-timing-ease,
+              opacity $transition-duration-base $transition-timing-ease,
+              padding $transition-duration-base $transition-timing-ease;
+  overflow: hidden;
+}
+
+.expanded {
+  max-height: 5000px;
+  opacity: 1;
+  padding: $spacing-4;
+}
+
+.collapsed {
+  max-height: 0;
+  opacity: 0;
+  padding: 0 $spacing-4;
+}

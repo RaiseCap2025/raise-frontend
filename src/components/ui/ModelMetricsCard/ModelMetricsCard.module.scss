@@ -1,0 +1,92 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.card {
+  background-color: $color-background;
+  border-radius: $border-radius-md;
+  padding: $spacing-4;
+  margin-bottom: $spacing-4;
+  border: $border-width-thin solid $color-border-light;
+  transition: box-shadow $transition-duration-base $transition-timing-ease;
+
+  &:hover {
+    box-shadow: $shadow-sm;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.header {
+  margin-bottom: $spacing-3;
+  padding-bottom: $spacing-2;
+  border-bottom: $border-width-thin solid $color-border-light;
+}
+
+.modelName {
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin: 0;
+}
+
+.responseSection {
+  margin-bottom: $spacing-4;
+}
+
+.responseLabel {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  color: $color-text-secondary;
+  margin-bottom: $spacing-2;
+  display: block;
+}
+
+.responseText {
+  background-color: $color-background-secondary;
+  border-radius: $border-radius-sm;
+  padding: $spacing-3;
+  max-height: 150px;
+  overflow-y: auto;
+  
+  @include custom-scrollbar;
+
+  p {
+    font-size: $font-size-sm;
+    line-height: $line-height-relaxed;
+    color: $color-text-primary;
+    margin: 0;
+    word-wrap: break-word;
+  }
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-3;
+  
+  @include respond-below(md) {
+    grid-template-columns: 1fr;
+    gap: $spacing-2;
+  }
+}
+
+.metricItem {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-1;
+}
+
+.metricLabel {
+  font-size: $font-size-xs;
+  color: $color-text-secondary;
+  text-transform: capitalize;
+  font-weight: $font-weight-normal;
+}
+
+.metricValue {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}

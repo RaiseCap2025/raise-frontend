@@ -17,6 +17,7 @@ interface GenericChartProps {
   xKey: string;
   yKeys: string[];
   chartType?: 'line' | 'stackedLine' | 'bar';
+  stacked?: boolean; // new: control stacking for bar charts
   height?: number;
   colors?: string[];
   xAxisLabel?: string;
@@ -33,6 +34,7 @@ const GenericChart: React.FC<GenericChartProps> = ({
   xKey,
   yKeys,
   chartType = 'line',
+  stacked = false,
   height = 400,
   colors = [],
   xAxisLabel = '',
@@ -45,59 +47,81 @@ const GenericChart: React.FC<GenericChartProps> = ({
   return (
     <ResponsiveContainer width="100%" height={height}>
       {chartType === 'bar' ? (
-        <BarChart data={data}>
-          <CartesianGrid stroke="#ccc" />
+        <BarChart
+          data={data}
+          margin={{ top: 20, right: 20, bottom: 40, left: 0 }}
+          barCategoryGap="40%"
+          barGap={2}
+        >
+          <CartesianGrid stroke="#eee" />
           <XAxis
             dataKey={xKey}
+            tick={{ fontSize: 12 }}
             label={{
               value: xAxisLabel,
               position: 'insideBottom',
-              offset: -5,
+              offset: -10,
               ...axisLabelStyle,
             }}
           />
           <YAxis
+            domain={[0, 1]}
+            tick={{ fontSize: 12 }}
             label={{
               value: yAxisLabel,
               angle: -90,
               position: 'insideLeft',
+              offset: 10,
               ...axisLabelStyle,
             }}
           />
           <Tooltip />
-          <Legend />
+          <Legend verticalAlign="bottom" height={10} />
           {yKeys.map((key, idx) => (
-            <Bar key={key} dataKey={key} fill={getColor(idx)} stackId="a" />
+            <Bar
+              key={key}
+              dataKey={key}
+              fill={getColor(idx)}
+              // only stack if stacked === true
+              {...(stacked ? { stackId: 'a' } : {})}
+              barSize={30}
+            />
           ))}
         </BarChart>
       ) : (
-        <LineChart data={data}>
-          <CartesianGrid stroke="#ccc" />
+        <LineChart data={data} margin={{ top: 20, right: 20, bottom: 40, left: 0 }}>
+          <CartesianGrid stroke="#eee" />
           <XAxis
             dataKey={xKey}
+            tick={{ fontSize: 12 }}
             label={{
               value: xAxisLabel,
               position: 'insideBottom',
-              offset: -5,
+              offset: -10,
               ...axisLabelStyle,
             }}
           />
           <YAxis
+            domain={[0, 1]}
+            tick={{ fontSize: 12 }}
             label={{
               value: yAxisLabel,
               angle: -90,
               position: 'insideLeft',
+              offset: 10,
               ...axisLabelStyle,
             }}
           />
           <Tooltip />
-          <Legend />
+          <Legend verticalAlign="bottom" height={36} />
           {yKeys.map((key, idx) => (
             <Line
               key={key}
               type={chartType === 'stackedLine' ? 'basis' : 'monotone'}
               dataKey={key}
               stroke={getColor(idx)}
+              strokeWidth={2}
+              dot={{ r: 3 }}
             />
           ))}
         </LineChart>

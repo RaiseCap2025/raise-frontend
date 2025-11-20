@@ -1,0 +1,16 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+  height: 100%;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: $color-border-light;
+  margin: $spacing-2 0;
+}

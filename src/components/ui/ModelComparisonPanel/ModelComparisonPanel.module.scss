@@ -1,0 +1,48 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-6;
+  height: 100%;
+}
+
+.modelsSection {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+}
+
+.chartSection {
+  background-color: $color-background;
+  border-radius: $border-radius-md;
+  padding: $spacing-4;
+  border: $border-width-thin solid $color-border-light;
+}
+
+.chartTitle {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-3;
+}
+
+.chartWrapper {
+  width: 100%;
+  min-height: 300px;
+}
+
+.loadingContainer {
+  @include flex-center;
+  min-height: 400px;
+  width: 100%;
+}
+
+.emptyState {
+  @include flex-center;
+  min-height: 200px;
+  padding: $spacing-8;
+  text-align: center;
+  color: $color-text-secondary;
+}
