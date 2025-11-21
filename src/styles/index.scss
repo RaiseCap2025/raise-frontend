@@ -157,11 +157,6 @@ button {
   @include button-base;
   background-color: $color-primary;
   color: $color-primary-contrast;
-
-  // TODO
-  // &:hover:not(:disabled) {
-  //   background-color: $color-primary-dark;
-  // }
 }
 
 // Reset button styles for icon buttons
