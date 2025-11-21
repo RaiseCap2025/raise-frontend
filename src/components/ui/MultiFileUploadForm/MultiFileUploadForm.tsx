@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import UploadProgress from '../UploadProgress/UploadProgress';
 import { RaiseBackendAPI } from '../../../api/endpoints/raiseBackend.api';
 import type { UploadStatus } from '../../../api/types/raiseBackend.types';
@@ -57,6 +57,8 @@ const MultiFileUploadForm: React.FC = () => {
     }
   };
 
+  console.log('Selected files:', handleUpload());
+  
   return (
     <Box className={styles.container}>
       <Box

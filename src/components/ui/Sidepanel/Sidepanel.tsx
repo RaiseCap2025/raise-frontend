@@ -9,7 +9,6 @@ interface SidePanelProps {
   isExpanded: boolean;
   onToggle: () => void;
   className?: string;
-  headerIcon?: React.ReactNode;
 }
 
 const SidePanel: React.FC<SidePanelProps> = ({
@@ -17,8 +16,7 @@ const SidePanel: React.FC<SidePanelProps> = ({
   children,
   isExpanded,
   onToggle,
-  className = '',
-  headerIcon,
+  className = ''
 }) => {
   return (
     <>

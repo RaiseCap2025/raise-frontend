@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import PercentIcon from '@mui/icons-material/Percent';
 import styles from './ModelMetricsCard.module.scss';
@@ -22,14 +22,10 @@ interface ModelMetricsCardProps {
 }
 
 const ModelMetricsCard: React.FC<ModelMetricsCardProps> = ({ 
-  modelName, 
-  response, 
+  modelName,
   metrics,
-  isRecommended = false,
   recommendationReason = ''
 }) => {
-  const formatCost = (cost: number) => `$${cost.toFixed(4)}`;
-  const formatLatency = (ms: number) => `${ms.toFixed(0)}ms`;
 
   return (
     <div className={styles.card}>

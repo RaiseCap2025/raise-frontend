@@ -1,7 +1,7 @@
 // src/pages/DataPreparation/DataPreparation.tsx
 
 import React from 'react';
-import { Box, Paper, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import PipelineForm from '../../components/ui/PipelineForm/PipelineForm';
 import type { PipelineFormData } from '../../types/dataPreparation';
