@@ -1,8 +1,9 @@
 import React from 'react';
 import { Typography } from '@mui/material';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import PercentIcon from '@mui/icons-material/Percent';
 import styles from './ModelMetricsCard.module.scss';
+import conversationIcon from '../../../assets/conversation-icon.svg';
+import PercentIcon from '../../../assets/PercentIcon.svg';
+import Llama from '../../../assets/llama.svg';
 
 export interface ModelMetrics {
   latency: number; // in ms
@@ -37,8 +38,8 @@ const ModelMetricsCard: React.FC<ModelMetricsCardProps> = ({
         
         <div className={styles.summaryCards}>
           <div className={styles.summaryCard}>
-            <div className={styles.iconCircle} style={{ backgroundColor: '#FFE8D6' }}>
-              <ChatBubbleOutlineIcon className={styles.summaryIcon} style={{ color: '#F2A900' }} />
+            <div className={styles.iconCircle}>
+              <img src={conversationIcon} alt='conversationIcon' />
             </div>
             <div className={styles.summaryContent}>
               <Typography variant="h4" className={styles.summaryValue}>
@@ -51,8 +52,8 @@ const ModelMetricsCard: React.FC<ModelMetricsCardProps> = ({
           </div>
 
           <div className={styles.summaryCard}>
-            <div className={styles.iconCircle} style={{ backgroundColor: '#D6EBFF' }}>
-              <PercentIcon className={styles.summaryIcon} style={{ color: '#1976D2' }} />
+            <div className={styles.iconCircle}>
+            <img src={PercentIcon} alt='PercentIcon' />
             </div>
             <div className={styles.summaryContent}>
               <Typography variant="h4" className={styles.summaryValue}>
@@ -75,10 +76,7 @@ const ModelMetricsCard: React.FC<ModelMetricsCardProps> = ({
         <div className={styles.recommendedCard}>
           <div className={styles.modelHeader}>
             <div className={styles.modelIcon}>
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" 
-                      stroke="currentColor" strokeWidth="2" fill="none"/>
-              </svg>
+            <img src={Llama} alt='Llama' />
             </div>
             <div className={styles.modelInfo}>
               <Typography variant="body2" className={styles.modelSubtext}>

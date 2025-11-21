@@ -40,8 +40,8 @@
 
 .summaryCard {
   background-color: $color-background;
-  border-radius: $border-radius-lg;
-  padding: $spacing-6;
+  border-radius: $border-radius-sm;
+  padding: $spacing-14;
   display: flex;
   align-items: center;
   gap: $spacing-4;
@@ -49,8 +49,7 @@
 }
 
 .iconCircle {
-  width: 72px;
-  height: 72px;
+  width: 20%;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -72,6 +71,7 @@
   color: $color-text-primary;
   line-height: 1;
   margin: 0;
+  font-size: $font-size-xl;
   
   @include respond-below(md) {
     font-size: 36px;
@@ -81,6 +81,7 @@
 .summaryLabel {
   color: $color-text-secondary;
   font-weight: $font-weight-normal;
+  font-size: $font-size-sm;
 }
 
 // Recommended Model Section
@@ -136,9 +137,9 @@
 }
 
 .modelNameLarge {
-  font-size: $font-size-2xl;
+  font-size: $font-size-xl;
   font-weight: $font-weight-semibold;
-  color: #1976D2;
+  color: $color-primary;
   margin: 0;
   
   @include respond-below(md) {
@@ -147,7 +148,7 @@
 }
 
 .recommendationText {
-  font-size: $font-size-base;
+  font-size: $font-size-sm;
   color: $color-text-primary;
   line-height: $line-height-relaxed;
   margin: 0;

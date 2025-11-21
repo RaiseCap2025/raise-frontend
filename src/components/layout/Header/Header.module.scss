@@ -41,7 +41,7 @@
   color: $color-text-primary;
   
   svg {
-    color: $color-primary;
+    fill: $color-primary;
   }
   
   @include respond-below(md) {

@@ -62,6 +62,7 @@
 
 // Tab Content
 .tabContent {
+  padding: $spacing-5;
   flex: 1;
   @at-root [class*="modelComparisonEnabled"] & {
     background-color: #ffffff;
@@ -71,7 +72,6 @@
 .chartContainer {
   display: flex;
   flex-direction: column;
-  gap: $spacing-2;
 }
 
 .chartHeading {
