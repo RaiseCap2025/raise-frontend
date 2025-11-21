@@ -27,6 +27,7 @@ interface GenericChartProps {
     fill?: string;
     fontWeight?: number | string;
   };
+  hideLegend?: boolean;
 }
 
 const GenericChart: React.FC<GenericChartProps> = ({
@@ -40,6 +41,7 @@ const GenericChart: React.FC<GenericChartProps> = ({
   xAxisLabel = '',
   yAxisLabel = '',
   axisLabelStyle = { fontSize: 14, fill: '#333', fontWeight: 'bold' },
+  hideLegend = false,
 }) => {
   const getColor = (index: number) =>
     colors[index] || `#${Math.floor(Math.random() * 16777215).toString(16)}`;
@@ -76,7 +78,7 @@ const GenericChart: React.FC<GenericChartProps> = ({
             }}
           />
           <Tooltip />
-          <Legend verticalAlign="bottom" height={1} />
+          {!hideLegend && (<Legend verticalAlign="bottom" height={1} />)}
           {yKeys.map((key, idx) => (
             <Bar
               key={key}
