@@ -28,6 +28,7 @@ interface GenericChartProps {
     fontWeight?: number | string;
   };
   hideLegend?: boolean;
+  chartProps?: any
 }
 
 const GenericChart: React.FC<GenericChartProps> = ({
@@ -42,6 +43,7 @@ const GenericChart: React.FC<GenericChartProps> = ({
   yAxisLabel = '',
   axisLabelStyle = { fontSize: 14, fill: '#333', fontWeight: 'bold' },
   hideLegend = false,
+  chartProps
 }) => {
   const getColor = (index: number) =>
     colors[index] || `#${Math.floor(Math.random() * 16777215).toString(16)}`;
@@ -52,8 +54,7 @@ const GenericChart: React.FC<GenericChartProps> = ({
         <BarChart
           data={data}
           margin={{ top: 20, right: 20, bottom: 40, left: 0 }}
-          barCategoryGap="40%"
-          barGap={2}
+          {...chartProps}
         >
           <CartesianGrid stroke="#eee" />
           <XAxis
@@ -91,7 +92,7 @@ const GenericChart: React.FC<GenericChartProps> = ({
           ))}
         </BarChart>
       ) : (
-        <LineChart data={data} margin={{ top: 20, right: 20, bottom: 40, left: 0 }}>
+        <LineChart data={data} margin={{ top: 20, right: 20, bottom: 40, left: 0 }} {...chartProps}>
           <CartesianGrid stroke="#eee" />
           <XAxis
             dataKey={xKey}

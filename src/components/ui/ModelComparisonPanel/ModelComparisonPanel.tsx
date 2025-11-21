@@ -49,24 +49,22 @@ const metricVsScoreData = [
   },
 ];
 
-const csatScoreData = [
-  {
-    model: 'Mistral Large 2.0',
-    'CSAT Score': 4.0,
-  },
-  {
-    model: 'Llama 3.0',
-    'CSAT Score': 8.6,
-  },
-  {
-    model: 'Gemini 2.5 Flash',
-    'CSAT Score': 7.3,
-  },
-];
+const csatScore = [
+  { model: 'Mistral Large 2.0', score: 4.0, color: '#F2A900' },
+  { model: 'Llama 3.0', score: 8.6, color: '#D38DBB' },
+  { model: 'Gemini 2.5 Flash', score: 7.3, color: '#1E88E5' },
+]
+const csatScoreData = csatScore.map((entry) => {
+  const dataPoint: Record<string, number | string> = { model: entry.model };
+  csatScore.forEach((innerEntry) => {
+    dataPoint[innerEntry.model] = innerEntry.model === entry.model ? entry.score : 0;
+  });
+  return dataPoint;
+});
 
 const ModelComparisonPanel: React.FC<ModelComparisonPanelProps> = ({ data, isLoading = false }) => {
   const [activeChartTab, setActiveChartTab] = useState(0);
-  
+
   const chartTabs = ['Metric vs Score per model', 'CSAT score'];
   const colors = ['#F2A900', '#D38DBB', '#1E88E5'];
 
@@ -107,7 +105,7 @@ const ModelComparisonPanel: React.FC<ModelComparisonPanelProps> = ({ data, isLoa
         <Typography variant="h6" className={styles.sectionTitle}>
           Model comparison
         </Typography>
-        
+
         {/* Chart Tabs */}
         <div className={styles.chartTabs}>
           {chartTabs.map((tab, index) => (
@@ -135,7 +133,7 @@ const ModelComparisonPanel: React.FC<ModelComparisonPanelProps> = ({ data, isLoa
                 <GenericChart
                   data={metricVsScoreData}
                   xKey="metric"
-                  yKeys={['Mistral Large 2.0', 'Llama 3.0', 'Gemini 2.5 Flash']}
+                  yKeys={csatScore.map((entry) => entry.model)}
                   chartType="bar"
                   stacked={false}
                   height={420}
@@ -144,23 +142,21 @@ const ModelComparisonPanel: React.FC<ModelComparisonPanelProps> = ({ data, isLoa
                   yAxisLabel="Score"
                   axisLabelStyle={{ fontSize: 13, fill: '#666', fontWeight: 500 }}
                   hideLegend
+                  chartProps={{
+                    barCategoryGap: "40%",
+                    barGap: 2
+                  }}
                 />
               </Box>
               <div className={styles.legend}>
                 <span className={styles.legendTitle}>Models</span>
                 <div className={styles.legendItems}>
-                  <div className={styles.legendItem}>
-                    <span className={styles.legendColor} style={{ backgroundColor: '#F2A900' }} />
-                    <span>Mistral Large 2.0</span>
-                  </div>
-                  <div className={styles.legendItem}>
-                    <span className={styles.legendColor} style={{ backgroundColor: '#D38DBB' }} />
-                    <span>Llama 3.0</span>
-                  </div>
-                  <div className={styles.legendItem}>
-                    <span className={styles.legendColor} style={{ backgroundColor: '#1E88E5' }} />
-                    <span>Gemini 2.5 Flash</span>
-                  </div>
+                  {csatScore.map((entry) => (
+                    <div className={styles.legendItem}>
+                      <span className={styles.legendColor} style={{ backgroundColor: entry.color }} />
+                      <span>{entry.model}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -178,10 +174,9 @@ const ModelComparisonPanel: React.FC<ModelComparisonPanelProps> = ({ data, isLoa
                 <GenericChart
                   data={csatScoreData}
                   xKey="model"
-                  // yKeys={['Mistral Large 2.0', 'Llama 3.0', 'Gemini 2.5 Flash']}
-                  yKeys={['CSAT Score']}
+                  yKeys={csatScore.map((entry) => entry.model)}
                   chartType="bar"
-                  stacked={false}
+                  stacked
                   height={420}
                   colors={colors}
                   xAxisLabel="AI Models"
@@ -193,18 +188,12 @@ const ModelComparisonPanel: React.FC<ModelComparisonPanelProps> = ({ data, isLoa
               <div className={styles.legend}>
                 <span className={styles.legendTitle}>Models</span>
                 <div className={styles.legendItems}>
-                  <div className={styles.legendItem}>
-                    <span className={styles.legendColor} style={{ backgroundColor: '#F2A900' }} />
-                    <span>Mistral Large 2.0</span>
-                  </div>
-                  <div className={styles.legendItem}>
-                    <span className={styles.legendColor} style={{ backgroundColor: '#D38DBB' }} />
-                    <span>Llama 3.0</span>
-                  </div>
-                  <div className={styles.legendItem}>
-                    <span className={styles.legendColor} style={{ backgroundColor: '#1E88E5' }} />
-                    <span>Gemini 2.5 Flash</span>
-                  </div>
+                  {csatScore.map((entry) => (
+                    <div className={styles.legendItem}>
+                      <span className={styles.legendColor} style={{ backgroundColor: entry.color }} />
+                      <span>{entry.model}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
