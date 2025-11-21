@@ -76,7 +76,7 @@ const GenericChart: React.FC<GenericChartProps> = ({
             }}
           />
           <Tooltip />
-          <Legend verticalAlign="bottom" height={10} />
+          <Legend verticalAlign="bottom" height={1} />
           {yKeys.map((key, idx) => (
             <Bar
               key={key}
