@@ -2,20 +2,19 @@
 @use '../../styles/mixins' as *;
 
 .container {
-  display: flex;
+  position: relative;
   height: calc(100vh - $header-height);
   background-color: $color-background;
-
-  @include respond-below(lg) {
-    flex-direction: column;
-  }
+  overflow: hidden;
 }
 
 .mainContent {
-  flex: 1;
-  @include flex-column;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   padding: $spacing-6;
   overflow: hidden;
+  transition: margin-right $transition-duration-slow $transition-timing-ease;
 
   @include respond-below(md) {
     padding: $spacing-4;
@@ -25,6 +24,7 @@
 .headerSection {
   text-align: left;
   margin-bottom: $spacing-4;
+  flex-shrink: 0;
 }
 
 .heading {
@@ -36,6 +36,14 @@
 .subHeading {
   @include small-text;
   color: $color-text-tertiary;
+  display: flex;
+  align-items: center;
+  gap: $spacing-1;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
 }
 
 .botSection {
@@ -44,6 +52,7 @@
   text-align: center;
   margin-bottom: $spacing-8;
   padding: $spacing-8 0;
+  flex-shrink: 0;
 }
 
 .botImage {
@@ -80,77 +89,16 @@
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
-}
-
-.rightPanel {
-  width: 400px;
-  background-color: $color-background;
-  border-left: $border-width-thin solid $color-border;
-  padding: $spacing-6;
-  overflow-y: auto;
-  transition: all $transition-duration-base $transition-timing-ease;
-
-  @include custom-scrollbar;
-
-  @include respond-below(lg) {
-    width: 100%;
-    border-left: none;
-    border-top: $border-width-thin solid $color-border;
-    max-height: 400px;
-  }
-}
-
-.modelComparisonView {
-  background-color: #F0F4F9;
-  width: 800px;
-
-  @include respond-below(lg) {
-    width: 100%;
-  }
+  flex-shrink: 0;
 }
 
 .modelComparisonPanel {
-  background-color: transparent;
+  background-color: #F0F4F9;
 }
 
-.bottomActions {
-  display: flex;
-  justify-content: center;
-  gap: $spacing-3;
-  margin: $spacing-6 0 $spacing-4;
-  flex-wrap: wrap;
-  
-  @include respond-below(sm) {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-.actionButton {
-  min-width: 180px;
-  padding: 10px 24px;
-  border: 1.5px solid #D0D0D0;
-  border-radius: 24px;
-  text-transform: none;
-  font-size: 15px;
-  font-weight: $font-weight-normal;
-  color: #333;
-  background-color: #FFFFFF;
-  transition: all $transition-duration-base $transition-timing-ease;
-  
-  &:hover {
-    border-color: #999;
-    background-color: #F9F9F9;
-  }
-  
-  svg {
-    width: 20px;
-    height: 20px;
-    color: #666;
-  }
-  
-  @include respond-below(sm) {
-    width: 100%;
-    max-width: 300px;
+// Mobile responsiveness
+@include respond-below(lg) {
+  .mainContent {
+    margin-right: 0 !important;
   }
 }

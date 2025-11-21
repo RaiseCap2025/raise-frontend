@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import styles from './TalkToDocument.module.scss';
@@ -8,15 +8,14 @@ import { QueryAPI } from '../../api/endpoints/snowflakeQuery.api';
 import ChatResponse from '../../components/ui/ChatResponse/ChatResponse';
 import ChatInput from '../../components/ui/ChatInput/ChatInput';
 import ChatBottomActions from '../../components/ui/ChatBottomActions/ChatBottomActions';
-import CollapsiblePanel from '../../components/ui/CollapsiblePanel/CollapsiblePanel';
+import SidePanel from '../../components/ui/Sidepanel/Sidepanel';
+import CollapsibleSection from '../../components/ui/CollapsibleSection/CollapsibleSection';
 import PipelinePanel from '../../components/ui/PipelinePanel/PipelinePanel';
 import ModelComparisonPanel, { type ModelComparisonData } from '../../components/ui/ModelComparisonPanel/ModelComparisonPanel';
 import bankingBot from '../../assets/banking-bot.svg';
 import { tabs } from '../../constants/tabs';
 
-type RightPanelView = 'pipeline' | 'modelComparison';
-
-const mockChatHistory : { user: string; bot: string }[] = [
+const mockChatHistory: { user: string; bot: string }[] = [
   {
     user: "Hi",
     bot: "Hello! How can I assist you today?",
@@ -25,7 +24,7 @@ const mockChatHistory : { user: string; bot: string }[] = [
     user: "Can you tell me about your features?",
     bot: "Sure! I can help with text generation, summaries, coding support, and more.",
   }
-]
+];
 
 const TalkToDocument: React.FC = () => {
   const [message, setMessage] = useState('');
@@ -33,10 +32,9 @@ const TalkToDocument: React.FC = () => {
   const [chatbotId, setChatbotId] = useState<number | null>(null);
   const [chatHistory, setChatHistory] = useState<{ user: string; bot: string }[]>(mockChatHistory);
   
-  // Right panel state
-  const [rightPanelView, setRightPanelView] = useState<RightPanelView>('pipeline');
+  // Panel state - only right side panels
   const [isPipelinePanelExpanded, setIsPipelinePanelExpanded] = useState(true);
-  const [isModelComparisonExpanded, setIsModelComparisonExpanded] = useState(true);
+  const [isModelComparisonExpanded, setIsModelComparisonExpanded] = useState(false);
   
   // Model comparison state
   const [modelComparisonData, setModelComparisonData] = useState<ModelComparisonData[]>([]);
@@ -62,23 +60,18 @@ const TalkToDocument: React.FC = () => {
         statement: cortexQuery,
       };
       const cortexResponse = await QueryAPI.query(JSON.stringify(payload));
-      const aiResponse = cortexResponse.data?.data?.[0]?.[0] || 'No response';
-      await ChatbotAPI.saveResponse(chatbotId, message, aiResponse);
+      const aiResponse = cortexResponse.data?.data?.[0]?.[0];
+      setChatHistory([...chatHistory, { user: message, bot: aiResponse || 'No response' }]);
       setMessage('');
-      fetchChatHistory();
     } catch (error) {
-      console.error('Error during chatbot interaction:', error);
-      alert('Failed to process chatbot message.');
+      console.error('Error sending message:', error);
+      alert('Failed to send message.');
     }
   };
 
   const handleCreatePipeline = async () => {
-    if (!pipeline) {
-      alert('Please select a pipeline first!');
-      return;
-    }
     try {
-      const res = await ChatbotAPI.createChatbot('Banking bot', '101', 2);
+      const res = await ChatbotAPI.createChatbot('Banking bot', '1', 1);
       const id = (res as { data?: { data?: any[][] } }).data?.data?.[0]?.[0];
       setChatbotId(id);
       alert(`Chatbot created with ID: ${id}`);
@@ -101,18 +94,16 @@ const TalkToDocument: React.FC = () => {
   };
 
   const handleModelComparison = async () => {
-    setRightPanelView('modelComparison');
+    // Close pipeline panel and open model comparison
+    setIsPipelinePanelExpanded(false);
+    setIsModelComparisonExpanded(true);
     setIsLoadingComparison(true);
     
     try {
-      // Simulate fetching model comparison data
-      // In production, this would be an actual API call
       const models = ['Llama 3.0'];
       const comparisonPromises = models.map(async (modelName) => {
-        // Simulate API delay
         await new Promise(resolve => setTimeout(resolve, 1000));
         
-        // Mock response data
         const mockResponse = `This is a sample response from ${modelName} for the question: "${currentQuestion || 'sample question'}"`;
         const mockMetrics = {
           latency: Math.random() * 2000 + 500,
@@ -142,15 +133,42 @@ const TalkToDocument: React.FC = () => {
     alert('Deploy functionality will be implemented');
   };
 
+  const handleTogglePipelinePanel = () => {
+    setIsPipelinePanelExpanded(!isPipelinePanelExpanded);
+    // Close model comparison when opening pipeline
+    if (!isPipelinePanelExpanded) {
+      setIsModelComparisonExpanded(false);
+    }
+  };
+
+  const handleToggleModelComparison = () => {
+    setIsModelComparisonExpanded(!isModelComparisonExpanded);
+    // Close pipeline when opening model comparison
+    if (!isModelComparisonExpanded) {
+      setIsPipelinePanelExpanded(false);
+    }
+  };
+
   useEffect(() => {
     if (chatbotId) fetchChatHistory();
   }, [chatbotId]);
 
+  // Calculate main content margin based on panel state
+  const getMainContentStyle = () => {
+    const rightMargin = (isPipelinePanelExpanded || isModelComparisonExpanded) ? '400px' : '0';
+    return {
+      marginRight: rightMargin,
+    };
+  };
+
   return (
     <div className={styles.container}>
-      <div className={styles.mainContent}>
+      {/* Main Chat Content */}
+      <div className={styles.mainContent} style={getMainContentStyle()}>
         <div className={styles.headerSection}>
-          <Typography variant="h5" className={styles.heading}>Talk to document</Typography>
+          <Typography variant="h5" className={styles.heading}>
+            Talk to document
+          </Typography>
           <Typography variant="body2" className={styles.subHeading}>
             <DescriptionOutlinedIcon className={styles.icon} />
             Experimentation
@@ -160,7 +178,9 @@ const TalkToDocument: React.FC = () => {
         {chatHistory.length === 0 && (
           <div className={styles.botSection}>
             <img src={bankingBot} alt="Banking bot" className={styles.botImage} />
-            <Typography variant="h6" className={styles.botTitle}>Banking bot</Typography>
+            <Typography variant="h6" className={styles.botTitle}>
+              Banking bot
+            </Typography>
             <Typography variant="body2" className={styles.botDescription}>
               Experiment with your bot – Your smart banking assistant! Ask me anything
             </Typography>
@@ -179,7 +199,6 @@ const TalkToDocument: React.FC = () => {
           ))}
         </div>
         
-        {/* Bottom Action Buttons */}
         {chatHistory.length > 0 && (
           <ChatBottomActions 
             onModelComparison={handleModelComparison}
@@ -187,7 +206,6 @@ const TalkToDocument: React.FC = () => {
           />
         )}
         
-        {/* Chat Input */}
         <div className={styles.chatInputWrapper}>
           <ChatInput 
             value={message} 
@@ -198,39 +216,43 @@ const TalkToDocument: React.FC = () => {
         </div>
       </div>
 
-      <div className={`${styles.rightPanel} ${
-        rightPanelView === 'modelComparison' ? styles.modelComparisonView : ''
-      }`}>
-        {rightPanelView === 'pipeline' ? (
-          <CollapsiblePanel
-            title="Select data source"
-            isExpanded={isPipelinePanelExpanded}
-            onToggle={() => setIsPipelinePanelExpanded(!isPipelinePanelExpanded)}
-            headerIcon={<DescriptionOutlinedIcon />}
-          >
-            <PipelinePanel
-              pipeline={pipeline}
-              pipelines={pipelines}
-              onSelect={setPipeline}
-              onCreatePipeline={handleCreatePipeline}
-              documents={documents}
-            />
-          </CollapsiblePanel>
-        ) : (
-          <CollapsiblePanel
-            title="Model Comparison"
-            isExpanded={isModelComparisonExpanded}
-            onToggle={() => setIsModelComparisonExpanded(!isModelComparisonExpanded)}
-            headerIcon={<CompareArrowsIcon />}
-            className={styles.modelComparisonPanel}
-          >
-            <ModelComparisonPanel 
-              data={modelComparisonData} 
-              isLoading={isLoadingComparison}
-            />
-          </CollapsiblePanel>
-        )}
-      </div>
+      {/* Right Panel - Pipeline Selection (Initial view) */}
+      <SidePanel
+        title="Pipeline Selection"
+        isExpanded={isPipelinePanelExpanded}
+        onToggle={handleTogglePipelinePanel}
+      >
+        <CollapsibleSection
+          title="Select data source"
+          headerIcon={<DescriptionOutlinedIcon />}
+        >
+          <PipelinePanel
+            pipeline={pipeline}
+            pipelines={pipelines}
+            onSelect={setPipeline}
+            onCreatePipeline={handleCreatePipeline}
+            documents={documents}
+          />
+        </CollapsibleSection>
+      </SidePanel>
+
+      {/* Right Panel - Model Comparison */}
+      <SidePanel
+        title="Model Comparison"
+        isExpanded={isModelComparisonExpanded}
+        onToggle={handleToggleModelComparison}
+        className={styles.modelComparisonPanel}
+      >
+        <CollapsibleSection
+          title="Model Comparison"
+          headerIcon={<CompareArrowsIcon />}
+        >
+          <ModelComparisonPanel 
+            data={modelComparisonData} 
+            isLoading={isLoadingComparison}
+          />
+        </CollapsibleSection>
+      </SidePanel>
     </div>
   );
 };
