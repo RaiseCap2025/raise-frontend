@@ -48,6 +48,38 @@ const GenericChart: React.FC<GenericChartProps> = ({
   const getColor = (index: number) =>
     colors[index] || `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 
+  const CustomizedAxisTick = (props :any) => {
+    const { x, y, payload } = props;
+    const words = payload.value.split(' ');
+    const maxCharsPerLine = 10; // Adjust as needed
+    
+    // Group words into lines
+    const lines = [];
+    let currentLine = '';
+    
+    words.forEach((word : any) => {
+      if ((currentLine + ' ' + word).length <= maxCharsPerLine) {
+        currentLine = currentLine ? currentLine + ' ' + word : word;
+      } else {
+        if (currentLine) lines.push(currentLine);
+        currentLine = word;
+      }
+    });
+    if (currentLine) lines.push(currentLine);
+    
+    return (
+      <g transform={`translate(${x},${y})`}>
+        <text x={0} y={0} textAnchor="middle" fill="#666" fontSize={12}>
+          {lines.map((line, index) => (
+            <tspan x={0} dy={index === 0 ? 16 : 14} key={index}>
+              {line}
+            </tspan>
+          ))}
+        </text>
+      </g>
+    );
+  };
+
   return (
     <ResponsiveContainer width="100%" height={height}>
       {chartType === 'bar' ? (
@@ -59,11 +91,12 @@ const GenericChart: React.FC<GenericChartProps> = ({
           <CartesianGrid stroke="#eee" />
           <XAxis
             dataKey={xKey}
-            tick={{ fontSize: 12 }}
+            tick={<CustomizedAxisTick />}
+            interval={0}
             label={{
               value: xAxisLabel,
               position: 'insideBottom',
-              offset: -10,
+              offset: -30,
               ...axisLabelStyle,
             }}
           />

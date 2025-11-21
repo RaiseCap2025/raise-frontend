@@ -18,31 +18,31 @@ interface ModelComparisonPanelProps {
 
 const metricVsScoreData = [
   {
-    metric: 'Answer relevance',
+    name: 'Answer relevance',
     'Mistral Large 2.0': 0.38,
     'Llama 3.0': 0.70,
     'Gemini 2.5 Flash': 0.55,
   },
   {
-    metric: 'Context relevance',
+    name: 'Context relevance',
     'Mistral Large 2.0': 0.66,
     'Llama 3.0': 0.72,
     'Gemini 2.5 Flash': 0.75,
   },
   {
-    metric: 'Groundedness',
+    name: 'Groundedness',
     'Mistral Large 2.0': 0.88,
     'Llama 3.0': 0.95,
     'Gemini 2.5 Flash': 0.92,
   },
   {
-    metric: 'Correctness',
+    name: 'Correctness',
     'Mistral Large 2.0': 0.59,
     'Llama 3.0': 0.72,
     'Gemini 2.5 Flash': 0.53,
   },
   {
-    metric: 'Coherence',
+    name: 'Coherence',
     'Mistral Large 2.0': 0.60,
     'Llama 3.0': 0.72,
     'Gemini 2.5 Flash': 0.55,
@@ -50,14 +50,14 @@ const metricVsScoreData = [
 ];
 
 const csatScore = [
-  { model: 'Mistral Large 2.0', score: 4.0, color: '#F2A900' },
-  { model: 'Llama 3.0', score: 8.6, color: '#D38DBB' },
-  { model: 'Gemini 2.5 Flash', score: 7.3, color: '#1E88E5' },
+  { name: 'Mistral Large 2.0', score: 4.0, color: '#F2A900' },
+  { name: 'Llama 3.0', score: 8.6, color: '#D38DBB' },
+  { name: 'Gemini 2.5 Flash', score: 7.3, color: '#1E88E5' },
 ]
 const csatScoreData = csatScore.map((entry) => {
-  const dataPoint: Record<string, number | string> = { model: entry.model };
+  const dataPoint: Record<string, number | string> = { name: entry.name };
   csatScore.forEach((innerEntry) => {
-    dataPoint[innerEntry.model] = innerEntry.model === entry.model ? entry.score : 0;
+    dataPoint[innerEntry.name] = innerEntry.name === entry.name ? entry.score : 0;
   });
   return dataPoint;
 });
@@ -132,8 +132,8 @@ const ModelComparisonPanel: React.FC<ModelComparisonPanelProps> = ({ data, isLoa
               <Box className={styles.chartWrapper}>
                 <GenericChart
                   data={metricVsScoreData}
-                  xKey="metric"
-                  yKeys={csatScore.map((entry) => entry.model)}
+                  xKey="name"
+                  yKeys={csatScore.map((entry) => entry.name)}
                   chartType="bar"
                   stacked={false}
                   height={420}
@@ -154,7 +154,7 @@ const ModelComparisonPanel: React.FC<ModelComparisonPanelProps> = ({ data, isLoa
                   {csatScore.map((entry) => (
                     <div className={styles.legendItem}>
                       <span className={styles.legendColor} style={{ backgroundColor: entry.color }} />
-                      <span>{entry.model}</span>
+                      <span>{entry.name}</span>
                     </div>
                   ))}
                 </div>
@@ -173,8 +173,8 @@ const ModelComparisonPanel: React.FC<ModelComparisonPanelProps> = ({ data, isLoa
               <Box className={styles.chartWrapper}>
                 <GenericChart
                   data={csatScoreData}
-                  xKey="model"
-                  yKeys={csatScore.map((entry) => entry.model)}
+                  xKey="name"
+                  yKeys={csatScore.map((entry) => entry.name)}
                   chartType="bar"
                   stacked
                   height={420}
@@ -191,7 +191,7 @@ const ModelComparisonPanel: React.FC<ModelComparisonPanelProps> = ({ data, isLoa
                   {csatScore.map((entry) => (
                     <div className={styles.legendItem}>
                       <span className={styles.legendColor} style={{ backgroundColor: entry.color }} />
-                      <span>{entry.model}</span>
+                      <span>{entry.name}</span>
                     </div>
                   ))}
                 </div>
