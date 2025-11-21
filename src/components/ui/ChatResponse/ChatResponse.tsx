@@ -4,6 +4,7 @@ import RefreshIcon from "@mui/icons-material/Refresh";
 import ChatBubble from "../ChatBubble/ChatBubble";
 import ChatTabs from "../ChatTabs/ChatTabs";
 import ChatFooterActions from "../ChatFooterActions/ChatFooterActions";
+import raiseLogo from "../../../assets/raise-logo.svg";
 import styles from "./ChatResponse.module.scss";
 
 interface ChatResponseProps {
@@ -32,7 +33,7 @@ const ChatResponse: React.FC<ChatResponseProps> = ({
         header={
           <div className={styles.botHeader}>
             <div className={styles.brandRow}>
-              <span className={styles.brand}>RAISE</span>
+              <img src={raiseLogo} alt="RAISE" className={styles.logo} />
               <IconButton 
                 className={styles.refreshBtn}
                 onClick={onRefresh}

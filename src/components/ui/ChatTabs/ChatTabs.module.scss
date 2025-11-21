@@ -1,46 +1,51 @@
 @use '../../../styles/tokens' as *;
 @use '../../../styles/mixins' as *;
 
+.tabsWrapper {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  
+  // Hide scrollbar but keep functionality
+  scrollbar-width: none; // Firefox
+  -ms-overflow-style: none; // IE and Edge
+  
+  &::-webkit-scrollbar {
+    display: none; // Chrome, Safari, Opera
+  }
+}
+
 .tabsContainer {
   display: flex;
-  gap: $spacing-3;
-  margin-bottom: $spacing-2;
-  flex-wrap: wrap;
+  gap: $spacing-2;
+  min-width: min-content;
+  padding-bottom: 2px; // Prevent bottom cut-off
+  button{
+    border-radius: unset;
+  }
 }
 
 .tab {
-  background: transparent;
+  padding: $spacing-2 $spacing-4;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  color: $color-text-secondary;
+  background-color: transparent;
   border: none;
-  font-size: 14px;
-  font-weight: $font-weight-medium;
-  color: #666;
+  border-bottom: 2px solid transparent;
   cursor: pointer;
-  padding: $spacing-2 0;
-  position: relative;
-  transition: color $transition-duration-base $transition-timing-ease;
-  border-radius: 0;
+  transition: all $transition-duration-base $transition-timing-ease;
+  white-space: nowrap;
+  flex-shrink: 0;
   
   &:hover {
-    color: #333;
+    color: $color-text-primary;
   }
   
-  &:focus-visible {
-    outline: 2px solid $color-primary;
-    outline-offset: 2px;
-  }
-}
-
-.active {
-  color: #000;
-  font-weight: $font-weight-semibold;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: #000;
+  &.active {
+    color: $color-text-primary;
+    font-weight: $font-weight-semibold;
+    border-bottom-color: #1976D2;
   }
 }

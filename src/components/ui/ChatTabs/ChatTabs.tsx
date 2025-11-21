@@ -9,16 +9,18 @@ interface ChatTabsProps {
 
 const ChatTabs: React.FC<ChatTabsProps> = ({ tabs, activeIndex, onChange }) => {
   return (
-    <div className={styles.tabsContainer}>
-      {tabs.map((tab, index) => (
-        <button
-          key={index}
-          className={`${styles.tab} ${activeIndex === index ? styles.active : ""}`}
-          onClick={() => onChange(index)}
-        >
-          {tab}
-        </button>
-      ))}
+    <div className={styles.tabsWrapper}>
+      <div className={styles.tabsContainer}>
+        {tabs.map((tab, index) => (
+          <button
+            key={index}
+            className={`${styles.tab} ${activeIndex === index ? styles.active : ""}`}
+            onClick={() => onChange(index)}
+          >
+            {tab}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
