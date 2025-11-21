@@ -36,8 +36,10 @@
   display: flex;
   justify-content: flex-end;
   padding: $spacing-4 $spacing-5;
-  border-bottom: $border-width-thin solid $color-border-light;
   background-color: $color-background;
+  @at-root [class*="modelComparisonEnabled"] & {
+    background-color: #F0F4F9;
+  }
   flex-shrink: 0;
   min-height: 64px;
 }
