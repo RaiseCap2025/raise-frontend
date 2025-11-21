@@ -58,11 +58,11 @@ const TalkToDocument: React.FC = () => {
         statement: cortexQuery,
       };
       const cortexResponse = await QueryAPI.query(JSON.stringify(payload));
-      const aiResponse = cortexResponse.data?.data?.[0]?.[0];
+      const aiResponse = cortexResponse?.data?.[0]?.[Object.keys(cortexResponse.data[0])[0]] || 'No response';
       setChatHistory([...chatHistory, { user: message, bot: aiResponse || 'No response' }]);
       setMessage('');
     } catch (error) {
-      console.error('Error sending message:', error);
+      console.error('Error sending message:', error); 
       alert('Failed to send message.');
     }
   };
@@ -70,7 +70,7 @@ const TalkToDocument: React.FC = () => {
   const handleCreatePipeline = async () => {
     try {
       const res = await ChatbotAPI.createChatbot('Banking bot', '1', 1);
-      const id = (res as { data?: { data?: any[][] } }).data?.data?.[0]?.[0];
+      const id = res[0] && res[0].R_SP_SAVE_CHATBOT;
       setChatbotId(id);
       alert(`Chatbot created with ID: ${id}`);
     } catch (error) {

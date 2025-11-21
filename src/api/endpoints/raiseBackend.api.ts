@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { UploadResponse, PresignedUrlResponse } from '../types/raiseBackend.types';
 
-const BASE_URL = '/api'; // Adjust if needed
+const BASE_URL = '';
 
 export const RaiseBackendAPI = {
   /**
