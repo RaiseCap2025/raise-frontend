@@ -6,6 +6,7 @@ import ChatTabs from "../ChatTabs/ChatTabs";
 import ChatFooterActions from "../ChatFooterActions/ChatFooterActions";
 import raiseLogo from "../../../assets/raise-logo.svg";
 import styles from "./ChatResponse.module.scss";
+import { formatBotMessage } from "../../../utility";
 
 interface ChatResponseProps {
   userText: string;
@@ -21,6 +22,7 @@ const ChatResponse: React.FC<ChatResponseProps> = ({
   onRefresh
 }) => {
   const [activeTab, setActiveTab] = useState(0);
+  const formattedBotText = formatBotMessage(botText);
 
   return (
     <div className={styles.chatResponse}>
@@ -47,7 +49,7 @@ const ChatResponse: React.FC<ChatResponseProps> = ({
         }
         footer={<ChatFooterActions />}
       >
-        <div className={styles.botContent} dangerouslySetInnerHTML={{ __html: botText }} />
+        <div className={styles.botContent} dangerouslySetInnerHTML={{ __html: formattedBotText }} />
       </ChatBubble>
     </div>
   );
