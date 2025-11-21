@@ -23,7 +23,6 @@
 }
 
 .sectionTitle {
-  font-size: $font-size-xl;
   font-weight: $font-weight-semibold;
   color: $color-text-primary;
   margin: 0;
@@ -70,8 +69,6 @@
 }
 
 .summaryValue {
-  font-size: 48px;
-  font-weight: $font-weight-normal;
   color: $color-text-primary;
   line-height: 1;
   margin: 0;
@@ -82,7 +79,6 @@
 }
 
 .summaryLabel {
-  font-size: $font-size-base;
   color: $color-text-secondary;
   font-weight: $font-weight-normal;
 }
