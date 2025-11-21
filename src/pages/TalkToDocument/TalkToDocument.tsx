@@ -153,14 +153,15 @@ const TalkToDocument: React.FC = () => {
 
   // Calculate main content margin based on panel state
   const getMainContentStyle = () => {
-    const rightMargin = (isPipelinePanelExpanded || isModelComparisonExpanded) ? '400px' : '0';
+    const rightMargin = (!isPipelinePanelExpanded && !isModelComparisonExpanded) ? '0' : 
+      isPipelinePanelExpanded ? '30%' : '40%';
     return {
       marginRight: rightMargin,
     };
   };
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${isModelComparisonExpanded ? 'modelComparisonEnabled' : ''}`}>
       {/* Main Chat Content */}
       <div className={styles.mainContent} style={getMainContentStyle()}>
         <div className={styles.headerSection}>
@@ -230,7 +231,8 @@ const TalkToDocument: React.FC = () => {
       </SidePanel>
 
       {/* Right Panel - Model Comparison */}
-      <SidePanel
+      {isModelComparisonExpanded && (
+        <SidePanel
         title="Model Comparison"
         isExpanded={isModelComparisonExpanded}
         onToggle={handleToggleModelComparison}
@@ -241,6 +243,7 @@ const TalkToDocument: React.FC = () => {
             isLoading={isLoadingComparison}
           />
       </SidePanel>
+      )}
     </div>
   );
 };

@@ -6,7 +6,10 @@
   top: $header-height;
   right: 0;
   bottom: 0;
-  width: 400px;
+  width: 28%;
+  @at-root [class*="modelComparisonEnabled"] & {
+    width: 37%;
+  }
   background-color: $color-background;
   border-left: $border-width-thin solid $color-border-light;
   display: flex;
@@ -71,6 +74,9 @@
   overflow-y: auto;
   overflow-x: hidden;
   padding: $spacing-4 $spacing-5;
+  @at-root [class*="modelComparisonEnabled"] & {
+    background-color: #F0F4F9;
+  }
   
   @include custom-scrollbar;
   .section{
