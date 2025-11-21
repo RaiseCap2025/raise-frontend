@@ -70,6 +70,7 @@
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
+  padding: $spacing-4 $spacing-5;
   
   @include custom-scrollbar;
   .section{

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Typography } from '@mui/material';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
-import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import styles from './TalkToDocument.module.scss';
 import { ChatbotAPI } from '../../api/endpoints/chatbot.api';
 import { QueryAPI } from '../../api/endpoints/snowflakeQuery.api';
@@ -9,7 +8,6 @@ import ChatResponse from '../../components/ui/ChatResponse/ChatResponse';
 import ChatInput from '../../components/ui/ChatInput/ChatInput';
 import ChatBottomActions from '../../components/ui/ChatBottomActions/ChatBottomActions';
 import SidePanel from '../../components/ui/Sidepanel/Sidepanel';
-import CollapsibleSection from '../../components/ui/CollapsibleSection/CollapsibleSection';
 import PipelinePanel from '../../components/ui/PipelinePanel/PipelinePanel';
 import ModelComparisonPanel, { type ModelComparisonData } from '../../components/ui/ModelComparisonPanel/ModelComparisonPanel';
 import bankingBot from '../../assets/banking-bot.svg';
@@ -222,10 +220,6 @@ const TalkToDocument: React.FC = () => {
         isExpanded={isPipelinePanelExpanded}
         onToggle={handleTogglePipelinePanel}
       >
-        <CollapsibleSection
-          title="Select data source"
-          headerIcon={<DescriptionOutlinedIcon />}
-        >
           <PipelinePanel
             pipeline={pipeline}
             pipelines={pipelines}
@@ -233,7 +227,6 @@ const TalkToDocument: React.FC = () => {
             onCreatePipeline={handleCreatePipeline}
             documents={documents}
           />
-        </CollapsibleSection>
       </SidePanel>
 
       {/* Right Panel - Model Comparison */}
@@ -243,15 +236,10 @@ const TalkToDocument: React.FC = () => {
         onToggle={handleToggleModelComparison}
         className={styles.modelComparisonPanel}
       >
-        <CollapsibleSection
-          title="Model Comparison"
-          headerIcon={<CompareArrowsIcon />}
-        >
           <ModelComparisonPanel 
             data={modelComparisonData} 
             isLoading={isLoadingComparison}
           />
-        </CollapsibleSection>
       </SidePanel>
     </div>
   );
